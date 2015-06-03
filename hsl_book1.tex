@@ -1,0 +1,3637 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass{tufte-book}
+
+%\hypersetup{colorlinks}% uncomment this line if you prefer colored hyperlinks (e.g., for onscreen viewing)
+\usepackage{amssymb}
+%\usepackage[TS3,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{array}
+
+%\usepackage{xunicode}
+%\usepackage{xltxtra}
+%\defaultfontfeatures{Mapping=tex-text}
+%%
+\geometry{letterpaper}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsbsy}
+% Book metadata
+\title[HSL Handbook 1]{Hawai`i Sign Language\\ \hspace{-0.5cm}Student Handbook1\\\hspace{-0.5cm}Level 1 \\\hspace{-0.5cm}Companion Bilingual\\ \hspace{-0.5cm}Dictionary 1 }
+\author[The HSL Production Team]{The HSL Production Team}
+\publisher{Department of Linguistics\\University of Hawai`i at M\={a}noa}
+
+
+
+% If they're installed, use Bergamo and Chantilly from www.fontsite.com.
+% They're clones of Bembo and Gill Sans, respectively.
+\IfFileExists{bergamo.sty}{\usepackage[osf]{bergamo}}{}% Bembo
+\IfFileExists{chantill.sty}{\usepackage{chantilc}}{}% Gill Sans
+
+\usepackage{microtype}
+%\usepackage{caption}
+%\usepackage{subcaption}
+%%
+% Just some sample text
+\usepackage{lipsum}
+\usepackage{multirow}
+%\usepackage{cineno}
+
+%\modulolinenumbers[5]
+
+%%
+% For nicely typeset tabular material
+\usepackage{booktabs}
+\usepackage{rotating}
+
+%%
+% For graphics / images
+\usepackage{graphicx}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+\graphicspath{{graphics/}}
+
+% The fancyvrb package lets us customize the formatting of verbatim
+% environments.  We use a slightly smaller font.
+\usepackage{fancyvrb}
+\fvset{fontsize=\normalsize}
+
+%%
+% Prints argument within hanging parentheses (i.e., parentheses that take
+% up no horizontal space).  Useful in tabular environments.
+\newcommand{\hangp}[1]{\makebox[0pt][r]{(}#1\makebox[0pt][l]{)}}
+
+%%
+% Prints an asterisk that takes up no horizontal space.
+% Useful in tabular environments.
+\newcommand{\hangstar}{\makebox[0pt][l]{*}}
+
+%%
+% Prints a trailing space in a smart way.
+\usepackage{xspace}
+
+%%
+% Some shortcuts for Tufte's book titles.  The lowercase commands will
+% produce the initials of the book title in italics.  The all-caps commands
+% will print out the full title of the book in italics.
+\newcommand{\vdqi}{\textit{VDQI}\xspace}
+\newcommand{\ei}{\textit{EI}\xspace}
+\newcommand{\ve}{\textit{VE}\xspace}
+\newcommand{\be}{\textit{BE}\xspace}
+\newcommand{\VDQI}{\textit{The Visual Display of Quantitative Information}\xspace}
+\newcommand{\EI}{\textit{Envisioning Information}\xspace}
+\newcommand{\VE}{\textit{Visual Explanations}\xspace}
+\newcommand{\BE}{\textit{Beautiful Evidence}\xspace}
+
+\newcommand{\Tc}{Tufte-\LaTeX\xspace}
+
+% Prints the month name (e.g., January) and the year (e.g., 2008)
+\newcommand{\monthyear}{%
+  \ifcase\month\or January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or
+  December\fi\space\number\year
+}
+
+
+% Prints an epigraph and speaker in sans serif, all-caps type.
+\newcommand{\openepigraph}[2]{%
+  \sffamily\fontsize{14}{16}\selectfont
+  \begin{fullwidth}
+  \sffamily\large
+  \begin{doublespace}
+  \noindent\allcaps{#1}\\% epigraph
+  \noindent\allcaps{#2}% author
+  \end{doublespace}
+  \end{fullwidth}
+}
+\usepackage{hanging}
+\newcommand{\sans}{\sffamily\fontsize{22}{24}\selectfont}
+\newcommand{\sansnormal}{\sffamily\selectfont}
+
+% Inserts a blank page
+\newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage}
+
+\usepackage{units}
+
+% Typesets the font size, leading, and measure in the form of 10/12x26 pc.
+\newcommand{\measure}[3]{#1/#2$\times$\unit[#3]{pc}}
+
+% Macros for typesetting the documentation
+\newcommand{\hlred}[1]{\textcolor{Maroon}{#1}}% prints in red
+\newcommand{\hangleft}[1]{\makebox[0pt][r]{#1}}
+\newcommand{\hairsp}{\hspace{1pt}}% hair space
+\newcommand{\hquad}{\hskip0.5em\relax}% half quad space
+\newcommand{\TODO}{\textcolor{red}{\bf TODO!}\xspace}
+\newcommand{\ie}{\textit{i.\hairsp{}e.}\xspace}
+\newcommand{\eg}{\textit{e.\hairsp{}g.}\xspace}
+\newcommand{\na}{\quad--}% used in tables for N/A cells
+\providecommand{\XeLaTeX}{X\lower.5ex\hbox{\kern-0.15em\reflectbox{E}}\kern-0.1em\LaTeX}
+\newcommand{\tXeLaTeX}{\XeLaTeX\index{XeLaTeX@\protect\XeLaTeX}}
+% \index{\texttt{\textbackslash xyz}@\hangleft{\texttt{\textbackslash}}\texttt{xyz}}
+\newcommand{\tuftebs}{\symbol{'134}}% a backslash in tt type in OT1/T1
+\newcommand{\doccmdnoindex}[2][]{\texttt{\tuftebs#2}}% command name -- adds backslash automatically (and doesn't add cmd to the index)
+\newcommand{\doccmddef}[2][]{%
+  \hlred{\texttt{\tuftebs#2}}\label{cmd:#2}%
+  \ifthenelse{\isempty{#1}}%
+    {% add the command to the index
+      \index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2}}% command name
+    }%
+    {% add the command and package to the index
+      \index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2} (\texttt{#1} package)}% command name
+      \index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}% package name
+    }%
+}% command name -- adds backslash automatically
+\newcommand{\doccmd}[2][]{%
+  \texttt{\tuftebs#2}%
+  \ifthenelse{\isempty{#1}}%
+    {% add the command to the index
+      \index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2}}% command name
+    }%
+    {% add the command and package to the index
+      \index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2} (\texttt{#1} package)}% command name
+      \index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}% package name
+    }%
+}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newenvironment{docspec}{\begin{quotation}\ttfamily\parskip0pt\parindent0pt\ignorespaces}{\end{quotation}}% command specification environment
+\newcommand{\docenv}[1]{\texttt{#1}\index{#1 environment@\texttt{#1} environment}\index{environments!#1@\texttt{#1}}}% environment name
+\newcommand{\docenvdef}[1]{\hlred{\texttt{#1}}\label{env:#1}\index{#1 environment@\texttt{#1} environment}\index{environments!#1@\texttt{#1}}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}\index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}\index{#1 class option@\texttt{#1} class option}\index{class options!#1@\texttt{#1}}}% document class option name
+\newcommand{\docclsoptdef}[1]{\hlred{\texttt{#1}}\label{clsopt:#1}\index{#1 class option@\texttt{#1} class option}\index{class options!#1@\texttt{#1}}}% document class option name defined
+\newcommand{\docmsg}[2]{\bigskip\begin{fullwidth}\noindent\ttfamily#1\end{fullwidth}\medskip\par\noindent#2}
+\newcommand{\docfilehook}[2]{\texttt{#1}\index{file hooks!#2}\index{#1@\texttt{#1}}}
+\newcommand{\doccounter}[1]{\texttt{#1}\index{#1 counter@\texttt{#1} counter}}
+
+% Generates the index
+\usepackage{makeidx}
+\makeindex
+%%%%%packages
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{pifont}
+\providecommand{\HUGE}{\Huge}% if not using memoir
+\newlength{\drop}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+%\usepackage[T1]{fontenc}
+%\usepackage{lmodern}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage[svgnames]{xcolor}
+\usepackage{color}
+%\usepackage[hidelinks]{hyperref}
+
+\ifpdf
+\usepackage{pdfcolmk}
+\usepackage{enumitem}
+\usepackage{hanging}
+%\usepackage{makeidx}
+\usepackage{stmaryrd}
+\usepackage{fourier-orns} %used for ornaments
+\usepackage{amsmath} %used for non-breakabledash
+%\usepackage{hyphenat}
+%\usepackage[labelformat=empty]{caption}
+\usepackage{fix2col}
+
+%%%%Thumb index start
+\newcommand{\POS}{\textcolor[RGB]{169, 169, 169}}
+%\newcommand{\POS}{\textcolor[RGB]{0, 147, 175}} 
+%\newcommand{\POS}{\textcolor[RGB]{124, 10, 2}} 
+\usepackage{fancyhdr}
+%\usepackage[icelandic, czech, english]{babel}
+%\usepackage[utf8x, utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage{hanging}
+%\usepackage{tikz}
+%\usetikzlibrary{calc}
+\newcommand\entry[3][]{\hangpara{2em}{1}{\fontfamily{phv}\selectfont{\textbf{{#2}}}}\ 
+#3\ifx\relax#1\relax\markboth{#2}{#2}\else\markboth{#1}{#1}\fi
+\par}\nopagebreak[4]
+\newcommand*{\dictchar}[1]{\centerline{\huge\sans\POS{\textbf{#1}}}\par}
+% use fancyhdr or whatever you want to add
+% the boxes to the header to make them appear
+% on every page
+\pagestyle{fancy}
+% new counter to hold the current number of the
+% letter to determine the vertical position
+\newcounter{letternum}
+% newcounter for the sum of all letters to get
+% the right height of a box
+\newcounter{lettersum}
+\setcounter{lettersum}{26}
+% some margin settings
+\newlength{\thumbtopmargin}
+\setlength{\thumbtopmargin}{1cm}
+\newlength{\thumbbottommargin}
+\setlength{\thumbbottommargin}{3cm}
+% calculate the box height by dividing the page height
+\newlength{\thumbheight}
+\pgfmathsetlength{\thumbheight}{%
+(\paperheight-\thumbtopmargin-\thumbbottommargin)%
+/%
+\value{lettersum}
+}
+% box width
+\newlength{\thumbwidth}
+\setlength{\thumbwidth}{1.5cm}
+% style the boxes
+\tikzset{
+thumb/.style={
+   fill=black!50!ChapBlue,
+   text=white,
+   minimum height=\thumbheight,
+   text width=\thumbwidth,
+   outer sep=0pt,
+   font=\sffamily\bfseries,
+}
+}
+\newcommand{\oddthumb}[1]{%
+    % see pgfmanual.pdf for more information about this part
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [thumb,text centered,anchor=north east,] at ($%
+            (current page.north east)-%
+            (0,\thumbtopmargin+\value{letternum}*\thumbheight)%
+        $) {#1};
+   \end{tikzpicture}
+}
+\newcommand{\eventhumb}[1]{%
+    % see pgfmanual.pdf for more information about this part
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [thumb,text centered,anchor=north west,] at ($%
+            (current page.north west)-%
+            (0,\thumbtopmargin+\value{letternum}*\thumbheight)%
+        $) {#1};
+   \end{tikzpicture}
+}
+% create a new command to set a new lettergroup
+\newcommand{\lettergroup}[1]{%
+\fancypagestyle{chapterstart}{%
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\chead{\oddthumb{#1}}% chapters start only on odd pages
+\cfoot{\thepage}
+}
+\fancyhead[LO]{\textbf{\rightmark}\oddthumb{#1}}%
+\fancyhead[RE]{\textbf{\leftmark}\eventhumb{#1}}%
+% step the counter of the letters
+\stepcounter{letternum}%
+}
+\fancypagestyle{basicstyle}{%
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[LE,RO]{\textbf{\chaptitle}}
+\fancyhead[LO,RE]{\textbf{\thepage}}}
+\fancypagestyle{dictstyle}{%
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhf{}
+\fancyhead[LE,LO]{\textbf{\rightmark}}
+\fancyhead[CO,CE]{\thepage}
+\fancyhead[RE,RO]{\textbf{\leftmark}}}
+\setlength{\columnsep}{20pt}
+\setlength{\columnseprule}{0.1pt}
+\usepackage{lipsum}
+\usepackage{idxlayout}
+
+%%%%%%thumb index stop
+
+\begin{document}
+
+% Front matter
+\frontmatter
+
+% r.1 blank page
+%\blankpage
+
+% v.2 epigraphs
+
+
+
+% r.3 full title page
+\maketitle
+
+
+
+% v.4 copyright page
+\newpage
+\begin{fullwidth}
+~\vfill
+\thispagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+Copyright \copyright\ \the\year\ Sign Language Research, Inc.
+
+\par\smallcaps{Published by \thanklesspublisher}
+
+%\par\smallcaps{tufte-latex.googlecode.com}
+
+\par All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the publisher.
+
+\par\textit{First printing, \monthyear}
+\end{fullwidth}
+
+\chapter*{The Hawai`i Sign Language \\Production Team}
+\thispagestyle{empty}
+\begin{fullwidth}
+\begin{table*}[h!]
+\begin{center}
+\begin{tabular}{c c c}
+&SIGN&\\
+&TRANSLATIONS&\\
+&Linda \textsc{lambrecht} &\\
+& & \\
+LESSON & & ENGLISH\\
+PLANS & & TRANSLATIONS\\
+\textsc{nguyen} Thi Hoa & & James \textsc{woodward}\\
+& & \\
+& LINGUISTIC &\\
+& ADVISORS & \\
+& James \textsc{woodward} &\\
+&Brenda \textsc{clark}&\\
+&Kirsten \textsc{helgeson}&\\
+&Stephanie \textsc{locke}&\\
+& Samantha \textsc{rarrick} &\\
+& Bradley \textsc{rentz}& \\
+& Claire \textsc{stabile}&\\
+&&\\
+SIGN & &SIGN\\
+PHOTOGRAPHY&&MODELS\\
+Barbara \textsc{earth} & & Linda \textsc{lambrecht}\\
+Leala \textsc{holcomb}  & &\\
+&&\\
+&SIGN&\\
+&ILLUSTRATIONS&\\
+& \textsc{nguyen} Hoang Lam&\\
+& \textsc{nguyen} Thi Hoa &\\
+&&\\
+&TYPOGRAPHIC&\\
+&DESIGN&\\
+&Bradley \textsc{Rentz}\\
+
+
+\end{tabular}
+\end{center}
+\end{table*}
+
+
+
+
+
+
+
+
+
+\end{fullwidth}
+
+
+% r.5 contents
+\tableofcontents
+
+%\listoffigures
+
+%\listoftables
+
+% r.7 dedication
+
+
+
+% r.9 introduction
+\cleardoublepage
+
+%\pagestyle{}
+\chapter{Acknowledgements}
+
+\newthought{Research} on which this book is based and production of this book was supported by a grant from the Endangered Languages Documentation Programme (ELDP)\index{Endangered Languages Documentation Programme} at the School for Oriental and African Studies (SOAS),\index{School for Oriental and African Studies} University of London\index{University of London|see {School for Oriental and African Studies}} to the University of Hawai‘i at M\={a}noa.\index{University of Hawai`i at M\={a}noa} This grant, ELDP grant MDP0278, is entitled: “Documentation of Hawai‘i Sign Language: Building the Foundation for the Documentation, Conservation, and Revitalization of Endangered Pacific Sign Languages.”\index{language documentation}
+
+We are extremely grateful to ELDP for their support.
+
+We would like to thank Mr.~Cheng Ka Yiu of The Centre for Sign Linguistics and Deaf Studies for his invaluable technical support in early stages of the publication of this book. 
+
+It should be noted that the views represented in this handbook do not necessarily reflect
+the views of the above-named supporting agencies and organizations.
+
+\chapter{Introduction}
+
+\newthought{Hawai‘i Sign Language} (HSL)\footnote{We use the term `Hawai‘i' because we know this sign language developed in Hawai‘i. We do not use the term `Hawaiian' to refer to this sign language because it is uncertain at this point how much of the language has roots in the indigenous Hawaiian culture and how much of this language developed out of contact between local and immigrant populations of Hawai‘i.} is a critically endangered language\index{Hawai`i Sign Language!endangerment status} isolate that developed in Hawai‘i before the introduction of American Sign Language (ASL) in the 1940s and before the first school for deaf people was established in Hawai‘i in 1914.
+
+In a letter from Hiram Bingham,\index{Hawai`i Sign Language!history!Hiram Bingham} an American missionary to Hawai‘i, to Thomas Hopkins Gallaudet,\index{Hawai`i Sign Language!history!Thomas Hopkins Gallaudet} one of the founders of the first school for deaf people in the mainland United States, Bingham mentions that he observed deaf people signing on O‘ahu\index{Hawai`i Sign Language!O`ahu} in Hawai‘i in 1821. While Bingham was not a fluent user of any sign language, he wrote written descriptions of a few of the signs he saw, including the signs for `pig', `dollar', and `forty'. The signs for `pig' and `dollar' described by Bingham are clearly cognate with Hawai‘i signs we have observed for `pig' and `dollar', and the sign for `forty' described by Bingham is still remembered by some HSL signers. While this information strongly suggests that at least some of the signs in HSL can be traced to signs used in indigenous Hawaiian culture on O‘ahu as early as 1821, we have no way of knowing how many HSL signs can be traced back to indigenous Hawaiian culture\index{Hawai`i Sign Language!history!indigenous Hawaiian influences} on O‘ahu. All we can say from the letter is that there was some form of signing used in indigenous Hawaiian culture on O‘ahu as early as 1821 and that some signs from this period are still in use in HSL.\index{Hawai`i Sign Language!history}
+
+
+While we have some information about signs on O‘ahu in 1821, we don’t have any empirical evidence on what happened on other islands in the same period. However, from what we now know about the co-existence of more than one sign language in small geographical areas, it is reasonable to assume that there may have been sign languages on other islands during the same period. In Viet Nam, Ha Noi Sign Language\index{Viet Nam!Ho Noi Sign Language} and Hai Phong Sign Language\index{Viet Nam!Hai Phong Sign Language} occur in communities only 50 kilometers apart (Woodward 2000); and in Thailand, Ban Khor Sign Language\index{Thailand!Ban Khor Sign Language} and Modern Thai Sign Language\index{Thailand!Modern Thai Sign Language} exist in two communities that are only 15 kilometers apart. In addition, it has been reported by some HSL signers today, that before the establishment of the first school for deaf people in Hawai‘i in 1912, there were separate sign languages on O‘ahu and on Kaua`i.\index{Hawai`i Sign Language!history!Kaua`i Sign Language} One elderly HSL user from O‘ahu (Parsons 2014) who was married to an HSL user from Kaua`i, has reported that the sign languages of her and her husband were not mutually intelligible, and that he used the O‘ahu signs with her.\footnote{This cannot be empirically verified, however, since her husband has passed away and no other Kaua`i HSL users have been identified. It should be noted that although the school for deaf people in Hawai‘i never used HSL for instruction, the school allowed Deaf people from various parts of Hawai‘i to interact and this interaction had a standardizing influence on various forms of HSL.}
+
+While the establishment of the first school for deaf people on O‘ahu in 1914 allowed deaf people from all the Hawaiian islands to interact on a daily basis, we should not assume that the school for deaf people was the first time that deaf people in Hawai‘i had the opportunity to interact. A number of newspaper articles mention interaction of deaf people before 1914. The most revealing article was written in 1911, three years before the school was established. This article describes a large wedding where the bride and groom, three bridesmaids, the best man, the flower girl, the ring bearer, and 80 out of 96 guests were all deaf. The newspaper also mentions that the ceremony was conducted in sign language. This is a huge gathering of deaf people given the population of Honolulu at the time, which demonstrates a large amount of interaction of deaf people and suggests the  formation of a fairly cohesive Deaf Community before 1900.
+
+While the opening of the first school for deaf people in Hawai‘i in 1914 allowed Deaf people from all the islands to regularly interact and to receive an education, the school’s emphasis on oralism and its lack of acceptance of HSL forced HSL to go underground.\index{Hawai`i Sign Language!Deaf education} With the introduction of American Sign Language\index{American Sign Language} into Hawai‘i in the 1940s by well-educated Deaf and hearing people from the mainland, HSL gradually was used less and less by Deaf people from Hawai‘i until it became the critically endangered language it is today.
+
+
+
+Applying the scale of endangerment used by the Catalogue of Endangered Languages (www.endangeredlanguages.com),\index{Catalogue of Endangered Languages} HSL scores a 92\% level of endangerment out of a possible 100\%, indicating that HSL is `critically endangered',\index{Hawai`i Sign Language!endangerment status!critically endangered} the highest possible level of endangerment. The level of certainty for this degree of endangerment is also the highest possible. HSL is known by  very few people, almost all over the age of 65 and many above  80.\index{Hawai`i Sign Language!user numbers} It is difficult to ascertain the number of HSL users. Approximately three-fourths of the people we have interviewed who report  using     this language actually do not use HSL, but instead use Creolized Hawai`i Sign Language (CHSL)\index{Creole Hawai`i Sign Language} which is heavily influenced by ASL. CHSL only shares 51\% of its basic core vocabulary with HSL, indicating that it is a distinct language from HSL. HSL has been moribund for many years. Only a small number of community users ever use the language and then only in an extremely limited number of situations. It is extremely difficult to elicit spontaneous use of the language for extended periods of time without the signers code-shifting to ASL or using extensive code-mixing involving ASL.\index{Hawai`i Sign Language!history!shift to American Sign Language}
+
+It is clear that if nothing is done, HSL will become extinct in the next 50 years, since it is likely that all current users of HSL will have passed away by that time. One of the purposes of this book is to document\index{language documentation} and conserve HSL before it becomes even more endangered. It is the authors' hope that this book will also generate interest in the possible revitalization of HSL,\index{Hawai`i Sign Language!revitalization} similar to the revitalization of spoken Hawaiian.\index{Hawaiian language!revitalization!comparison to Hawai`i Sign Language}
+
+\begin{center}
+\textbf{References Cited}
+\end{center}
+
+\hangpara{2em}{1} Bingham, Hiram. 1821. Personal letter addressed to Rev. Thomas H.~Gallaudet, Principal of the
+Deaf and Dumb Asylum, Hartford, Conn. Written at Sandwich Island Woahu February 23, 1821.
+
+\hangpara{2em}{1}No Author. 1911. A China Shower. \emph{Evening Bulletin}. 09 Dec. 1911, 21. Honolulu, HI. (\href{http://chroniclingamerica.loc.gov/lccn/sn82016413/1911-12-09/ed-1/seq-21/}{http://chroniclingamerica.loc.gov/lccn/sn82016413/1911-12-09/ed-1/seq-21/}).
+
+\hangpara{2em}{1}Parsons, Hester. 2014. Personal communication to Barbara Earth, April 23, 2014.
+
+\hangpara{2em}{1}Woodward, James. 2000. Sign Languages and Sign Language Families in Thailand
+and Viet Nam. In Karen Emmorey \& Harlan Lane (eds.), \emph{The Signs of Language Revisited: An Anthology in Honor of Ursula Bellugi and Edward Klima}, 23–47. Mahwah, New Jersey: Lawrence Erlbaum Associates, Inc.
+
+\chapter{Focus and Use of the Handbook}
+
+\newthought{This handbook} is meant to be used by beginning students learning Hawai`i Sign Language (HSL) from a Deaf certified teacher of HSL or from a video version of a Deaf certified teacher of HSL. If you are not learning HSL in either of the above two ways, you are using this book incorrectly.
+
+As indicated in the paragraph above, this book is not a textbook but a handbook. You should not try to learn HSL directly from this book; rather you should learn signs from a trained Deaf professional teacher of HSL who knows how to teach using the natural method of language learning. You should only use this book outside of the classroom. Before going to class you should read Section 1 of each lesson to know what the lesson will be about. You should not look at the sign vocabulary and grammatical structures in Section 2 until after class. In this way, you will have the least amount of interference from your own language while you are learning HSL. After you have learned the vocabulary and structures in this lesson in class, you should then use Section 2 to review the vocabulary and grammatical structures you learned in class. Be sure and finish the homework for each lesson, because that will give you additional practice outside the classroom. (If you are unable to learn directly with a live Deaf professional teacher, and you use a video instructional format, consider the time you are watching the video to be the same as classroom time.)
+
+You should be aware of several things when you go to class. First, HSL\index{Hawai`i Sign Language} is a different language from all other languages in Hawai`i. Therefore the structure of HSL is very different from spoken/written English,\index{English} Hawaiian,\index{Hawaiian language} or Hawai`i Creole English (known locally  and referred to hereafter as Pidgin),\index{Hawai`i Creole English}\index{Pidgin|see {Hawai`i Creole English}} or American Sign Language.\index{American Sign Language} For example, the normal word order in HSL is subject, object, verb. English, Pidgin, and American Sign Language normally have subject, verb, object word order, and Hawaiian normally has verb, subject, object word order. Because the word orders of HSL and spoken languages in Hawai`i are so different, you should never try to use your voice when using HSL. You can’t speak in one grammatical order and sign in another at the same time. That would be like trying to speak Hawaiian and write English at the same time.%%%add after pidgin see Hawai`i Creole English
+
+In addition, if you want to ask your teacher a question, remember he or she is Deaf. Write your question rather than speaking it. Also, remember to avoid asking too many questions during class time, since they will disrupt the class flow. Ask your teacher during break or after class. Do not talk with your hearing classmates during class; if you want to give them assistance, do so in signs or gestures, like a Deaf person would. Remember that by using your voice and not signs or gestures, you are likely excluding your teacher from the conversation, which is not polite from any point of view.
+
+This handbook (Level 1, Book 1) and the other books in this series contain or are accompanied by a companion bilingual dictionary\index{dictionary} that is keyed to the lessons in each of the books. The contained or accompanying bilingual dictionary allows you to look up the English meaning of a sign through its handshape,\index{sign!handshape} orientation,\index{sign!orientation} location,\index{sign!location} and movement;\index{sign!movement} and you can look up the sign translation of English words that are arranged in alphabetical order.
+
+This handbook also  includes a wide margin on the right side of every page to encourage the user to write notes during class. Do not be afraid to write in the book.
+
+
+
+For more information about classes, the dictionary, and other materials, please contact:
+
+\vspace{0.25cm}Department of Linguistics
+
+University of Hawai`i at M\={a}noa\index{University of Hawai`i at M\={a}noa}
+
+1890 East-West Road, Moore Hall 569
+
+Honolulu, Hawai`i 96822
+
+U.S.A.
+
+\vspace{0.25cm}\href{mailto:linguist@hawaii.edu}{linguist@hawaii.edu}
+
+\vspace{0.25cm}In closing, users of this handbook are reminded that they should not attempt to learn individual forms of signs solely from this handbook. As with any reference book of any language, this volume is only a tool. It is no substitute for face-to-face interaction with fluent users of the language.
+
+\chapter{Movement Symbols}%%%get better versions of symbols from Woody
+\index{movement symbol}
+
+\begin{tabular}{r l r l}
+\includegraphics[width=0.5cm]{up.png} & Upward Movement & \includegraphics[width=0.5cm]{uprepeat.png} & Repeated Upward Movement\\
+\includegraphics[width=0.4cm]{down.png} & Downward Movement & \includegraphics[width=0.5cm]{downrepeat.png} & Repeated Downward Movement\\
+
+\includegraphics[width=0.5cm]{lr.png} & Left to Right Movement & \includegraphics[width=0.5cm]{rlr.png} & Repeated Left to Right Movement\\
+
+\includegraphics[width=0.5cm]{rl.png} & Right to Left Movement & \includegraphics[width=0.5cm]{rrl.png} & Repeated Right to Left Movement\\
+
+\includegraphics[width=0.5cm]{outward.png} & Outward Movement & \includegraphics[width=0.5cm]{routward.png} & Repeated Outward Movement\\
+
+\includegraphics[width=0.5cm]{inward.png} & Inward Movement & \includegraphics[width=0.5cm]{rinward.png} & Repeated Inward Movement\\
+
+\includegraphics[width=0.5cm]{lrcirc.png} & Left to Right Circular Movement & \includegraphics[width=0.5cm]{rlrcirc.png} & Repeated Left to Right Circular Movement\\
+
+\includegraphics[width=0.5cm]{rlcirc.png} & Right to Left Circular Movement & \includegraphics[width=0.5cm]{rrlcirc.png} & Repeated Right to Left Circular Movement\\
+
+\includegraphics[width=0.5cm]{updown.png} & Up and Down Movement & \includegraphics[width=0.5cm]{updownz.png} & Up to Down Zig-Zag Movement\\
+
+\includegraphics[width=0.5cm]{sideside.png} & Side to Side Movement & \includegraphics[width=0.5cm]{finger.png} & Movement of Fingers\\
+
+\includegraphics[width=0.25cm]{contact.png} & Single Contact & \includegraphics[width=0.75cm]{nostraight.png} & Non-Straight Movement\\
+
+\includegraphics[width=0.5cm]{dcontact.png} & Double Contact & \\
+
+\end{tabular}
+
+\chapter{Abbreviations Used}
+\index{abbreviation}
+
+\begin{tabular}{l l l l}
+AJ & Adjective&& describes a noun (ex.~`big')\index{adjective} \\
+ASP & Aspect&&describes duration or completion \index{aspect} (ex.~`finished')\\
+AV & Adverb&&describes a verb (ex.~`slowly') \index{adverb}\\
+CONJ & Conjunction&&links words or phrases \index{conjunction} (ex.~`and', `but')\\
+EXC & Exclamation&&expresses emotion \index{exclamation} (ex.~`wow')\\
+N & Noun&&person, place, or thing \index{noun} (ex.~`chair')\\
+NEG & Negative&&gives opposite meaning \index{negation} (ex.~`not')\\
+NUM & Number&&describes quantity \index{number} (ex.~`two', `many')\\
+PREP & Preposition&&gives relationship between objects \index{preposition} (ex.~`on')\\
+PRO & Pronoun&&stands for a noun \index{pronoun} (ex.~`you', `it')\\
+QW & WH-Question Word&&asks for certain type of information (ex.~`who') \index{question!question word}\\
+SENT & Sentence&&complete thought or question\\
+V & Verb&&describes an action \index{verb} (ex.~`walk')\\
+\end{tabular}
+
+\mainmatter
+
+\chapter{Lesson 1 Greetings, Names}\index{greetings}
+
+\section{Section 1 Read before class}
+\newthought{This lesson} is divided into five parts. The first three parts are very short and give you some basic vocabulary that you will need to participate in classes using Hawai`i Sign Language (HSL): 1) saying 
+, 2) how to ask someone to do something again, and 3) how to indicate the location of an object or item using HSL. The fourth and fifth parts are longer and deal with how to ask about written names\index{name!written name} (part 4) and name signs (part 5).
+
+For this lesson about naming, you should also remember that Deaf people have two types of names. One, like your own name, is what is given to them by their parents and used in the majority culture. The second is specific to the culture(s) of Deaf people in Hawai`i. This second type of name is called a `name-sign'.\index{name!name-sign} This sign is given by members of Deaf culture(s)\index{Hawai`i Sign Language!Deaf culture(s)} to a person who wants to interact with Deaf people in Hawai`i. Traditional name signs in HSL are not normally related to a person’s spoken language name, but rather are related to some physical characteristic or a behavior that is easily identifiable. Name signs in HSL should be given by a Deaf person who is fluent in HSL, not by a hearing person; and once given, should not be changed by any hearing person. Being given a name sign is an important indicator that Deaf people have recognized that you wish to learn their language in order to interact with them. All formally given name signs should be respected as an important part of Deaf culture(s) in Hawai`i.
+
+The example sentences given in this and the following lessons include vertical lines that indicate phrase boundaries within each sentence. \index{phrase}\index{phrase!boundary}
+
+At this point, you should stop reading until after you have attended class. After class, you should use Section 2 for review and further practice.
+\newpage
+
+\section{Section 2 For Review after Class}
+
+\subsection{Saying Hello}\index{greetings}
+
+
+\begin{table}[h!]\index{vocabulary}
+\begin{tabular}{c}
+
+\includegraphics[height=2.75cm]{hello.png}\\
+\footnotesize hello, aloha\\
+\end{tabular}
+\end{table}
+
+
+
+
+\subsection{Simple Commands}
+\begin{table}[h!]
+\begin{tabular}{c}
+
+\includegraphics[height=2.75cm]{repeat.jpg}\\
+\footnotesize do-again, repeat\\
+\end{tabular}
+\end{table}
+
+
+
+\subsection{Indicating Location}
+
+\begin{table*}[h!]
+
+\begin{tabular}{c c l l}
+\includegraphics[height=2.75cm]{left.jpg} & \includegraphics[height=2.75cm]{right.jpg} &\includegraphics[height=2.75cm]{up.jpg} & \includegraphics[height=2.75cm]{down.jpg}\\
+\footnotesize to-the-left & \footnotesize to-the-right & \footnotesize up & \footnotesize down\\
+\includegraphics[height=2.75cm]{here.jpg}\\
+\footnotesize here-(on-the-chalkboard)\\
+
+\end{tabular}
+\end{table*}
+\newpage
+
+\subsection{Asking About and Indicating Written Names}
+
+\noindent A.~Vocabulary Already Presented During Class\\ 
+
+\vspace{0.25cm}\noindent Nouns\index{noun}\index{vocabulary}
+
+\begin{table}[h!]
+\begin{tabular}{c}
+
+\includegraphics[height=2.75cm]{name.jpg}\\
+\footnotesize name\index{name!written name}\\
+\end{tabular}
+\end{table}
+
+\noindent Pronouns\index{pronoun}
+
+\begin{table*}[h!]
+
+\begin{tabular}{c c l }
+\includegraphics[height=2.75cm]{me.jpg} & \includegraphics[height=2.75cm]{you.jpg} &\includegraphics[height=2.75cm]{she.jpg} \\
+\footnotesize I, me & \footnotesize you (singular) & \footnotesize she, her, he, him, it \\
+
+\end{tabular}
+\end{table*}
+
+\noindent Verbs\index{verb}
+
+\begin{table}[h!]
+
+\begin{tabular}{c c }
+\includegraphics[height=2.75cm]{write.jpg} & \includegraphics[height=2.75cm]{writechalk.jpg}  \\
+\footnotesize write & \footnotesize write-on-chalkboard \\
+
+\end{tabular}
+\end{table}
+
+\noindent Question Words\index{question!question word}
+
+\begin{table*}[h!]
+
+\begin{tabular}{c c l }
+\includegraphics[height=2.75cm]{who1.jpg} & \includegraphics[height=2.75cm]{wheredistal.jpg} &\includegraphics[height=2.75cm]{where.jpg} \\
+\footnotesize who  & \footnotesize where (distal) & \footnotesize where (proximal) \\
+
+\end{tabular}
+\end{table*}
+\newpage
+\noindent B.~Grammatical Examples and Patterns Already Presented in Class\\
+
+\vspace{0.25cm} \noindent \textbf{Example 1}
+\begin{table*}[h!]
+
+\begin{tabular}{c |c c }
+\includegraphics[height=2.75cm]{here.jpg} & \includegraphics[height=2.75cm]{name.jpg} &\includegraphics[height=2.75cm]{me.jpg} \\
+\footnotesize Subject & \footnotesize Predicate & \\
+\footnotesize [PRO] & \footnotesize [N & \footnotesize PRO] \\
+
+\end{tabular}
+\end{table*}
+
+ Best English Translation: `This is my name.'\\
+ 
+\vspace{0.25cm} \noindent \textbf{Example 2}
+\begin{table*}[h!]
+
+\begin{tabular}{c c |c }
+\includegraphics[height=2.75cm]{me.jpg} & \includegraphics[height=2.75cm]{name.jpg} &\includegraphics[height=2.75cm]{where.jpg} \\
+\footnotesize Subject &  & \footnotesize Predicate? \\
+\footnotesize [PRO & \footnotesize N] & \footnotesize [QW] \\
+
+\end{tabular}
+\end{table*}
+
+Best English Translation: `Where is my name?'\\
+
+\vspace{0.25cm} \noindent \textbf{Example 3}
+\begin{table*}[h!]
+
+\begin{tabular}{c c | c }
+\includegraphics[height=2.75cm]{she.jpg} & \includegraphics[height=2.75cm]{name.jpg} &\includegraphics[height=2.75cm]{right.jpg} \\
+\footnotesize Subject &  & \footnotesize Predicate \\
+\footnotesize [PRO & \footnotesize N] & \footnotesize [ADV] \\
+
+
+
+\end{tabular}
+\end{table*}
+
+Best English Translation: `His name is to the right.'
+
+\newpage \noindent \textbf{Example 4}
+\begin{table*}[h!]
+
+\begin{tabular}{c| c l }
+\includegraphics[height=2.75cm]{here.jpg} & \includegraphics[height=2.75cm]{name.jpg} &\includegraphics[height=2.75cm]{who1.jpg} \\
+\footnotesize Subject & \footnotesize Predicate & \footnotesize ? \\
+\footnotesize [PRO] & \footnotesize [N & \footnotesize QW] \\
+
+
+
+\end{tabular}
+\end{table*}
+
+Best English Translation: `Whose name is this?'
+
+\subsection{Asking About and Giving Name Signs}\index{name!name-sign}
+
+\noindent A.~Vocabulary Already Presented During Class\\
+
+\vspace{0.25cm}\noindent Nouns\index{noun}\index{vocabulary}
+
+\begin{table}[h!]
+\begin{tabular}{c}
+
+\includegraphics[height=2.75cm]{namesign.jpg}\\
+\footnotesize name-sign\\
+\end{tabular}
+\end{table}
+
+\noindent Verbs\index{verb}
+
+\begin{table}[h!]
+\begin{tabular}{c}
+
+\includegraphics[height=2.75cm]{ask.jpg}\\
+\footnotesize ask\\
+\end{tabular}
+\end{table}
+%\newpage
+\noindent Adjectives\index{adjective}
+
+\begin{table*}[h!]
+
+\begin{tabular}{c c l }
+\includegraphics[height=2.75cm]{right1.jpg} & \includegraphics[height=2.75cm]{right2.jpg} &\includegraphics[height=2.75cm]{wrong.jpg} \\
+\footnotesize right, correct (1) & \footnotesize right, correct (2) & \footnotesize wrong\\
+
+\end{tabular}
+\end{table*}
+\newpage
+\noindent Question Words\index{question!question word}
+
+\begin{table}[h!]
+\begin{tabular}{c}
+
+\includegraphics[height=2.75cm]{what.jpg}\\
+\footnotesize what\\
+\end{tabular}
+\end{table}
+
+\vspace{0.25cm}\noindent B.~Grammatical Examples and Patterns Already Presented in Class.
+
+\vspace{0.25cm} \noindent \textbf{Example 5}
+\begin{table*}[h!]
+
+\begin{tabular}{c c | c}
+\includegraphics[height=2.75cm]{she.jpg} & \includegraphics[height=2.75cm]{namesign.jpg} &\includegraphics[height=2.75cm]{name1.jpg} \\
+\footnotesize Subject &  & \footnotesize Predicate \\
+\footnotesize [PRO & \footnotesize N] & \footnotesize [N] \\
+
+
+
+\end{tabular}
+\end{table*}
+
+Best English Translation: `His name sign is xxxxx.'
+
+
+\vspace{0.25cm} \noindent \textbf{Example 6}
+\begin{table*}[h!]
+
+\begin{tabular}{c c | c}
+\includegraphics[height=2.5cm]{you.jpg} & \includegraphics[height=2.5cm]{namesign.jpg} &\includegraphics[height=2.5cm]{what.jpg} \\
+\footnotesize Subject &  & \footnotesize Predicate ? \\
+\footnotesize [PRO & \footnotesize N] & \footnotesize [QW] \\
+
+
+
+\end{tabular}
+\end{table*}
+
+Best English Translation: `What is your name sign?'
+
+
+\vspace{0.25cm} \noindent \textbf{Example 7}
+\begin{table*}[h!]
+
+\begin{tabular}{c | c c}
+\includegraphics[height=2.5cm]{name1.jpg} & \includegraphics[height=2.5cm]{namesign.jpg} &\includegraphics[height=2.5cm]{who1.jpg} \\
+\footnotesize Subject &   \footnotesize Predicate & ? \\
+\footnotesize [N] & \footnotesize [N & \footnotesize QW] \\
+
+
+
+\end{tabular}
+\end{table*}
+
+Best English Translation: `Whose name sign is xxxxx?'
+\newpage
+
+ \noindent \textbf{Example 8}
+\begin{table*}[h!]
+
+\begin{tabular}{c | c c}
+\includegraphics[height=2.5cm]{name1.jpg} & \includegraphics[height=2.5cm]{namesign.jpg} &\includegraphics[height=2.5cm]{she.jpg} \\
+\footnotesize Subject &   \footnotesize Predicate &  \\
+\footnotesize [N] & \footnotesize [N & \footnotesize PRO] \\
+
+
+
+\end{tabular}
+\end{table*}
+
+Best English Translation: `xxxxx is his/her name sign.'
+
+\vspace{0.25cm} \noindent \textbf{Example 9}
+\begin{table*}[h!]
+
+\begin{tabular}{c c | c}
+\includegraphics[height=2.5cm]{you.jpg} & \includegraphics[height=2.5cm]{namesign.jpg} &\includegraphics[height=2.5cm]{name1.jpg} \\
+\footnotesize Subject & &  \footnotesize Predicate  ? \\
+\footnotesize [PRO & \footnotesize N] & \footnotesize [N] \\
+& & \footnotesize with Question of face\\
+
+
+
+\end{tabular}
+\end{table*}
+
+Best English Translation: `Is your name sign xxxxx?'
+
+\subsection{Homework}\index{homework}
+
+\begin{enumerate}
+\item Sign the following dialogue between two people. Make sure you follow the grammar of Hawai`i Sign Language, as you have been taught in this lesson.
+\begin{description}
+\item{A.} Hello.
+\item{B.} Hello.
+\item{A.} My name sign is xxxxx. What is your name sign?
+\item{B.} My name sign is xxxxx.
+
+\end{description}
+\item Sign the following dialogue. Make sure you follow the grammar of Hawai`i Sign Language as you have been taught in this lesson.
+
+\begin{description}
+\item{A.} Hello.
+\item{B.} Hello. Is your name sign xxxxx?
+\item{A.} (Shake head no). My name sign is xxxxx. What is your name sign?
+\item{B.} My name sign is xxxxx.
+\end{description}
+\item Sign the following dialogue. Make sure you follow the grammar of Hawai`i Sign Language, as you have been taught in this lesson.
+\begin{description}
+\item{A.} Whose name sign is xxxxx?
+\item{B.} xxxxx is his name sign.
+\item{A.} Hello. Is your name sign xxxxx?
+\item{C.} Right.
+\item{A.} My name sign is xxxxx.
+\end{description}
+\item Write the English translation under each of the pictures of the following
+vocabulary items in Hawai`i Sign Language.
+
+\begin{table*}
+\begin{tabular}{c c c c c}
+\includegraphics[height=2.75cm]{who1.jpg} & \includegraphics[height=2.75cm]{me.jpg} & \includegraphics[height=2.75cm]{right1.jpg} & \includegraphics[height=2.75cm]{you.jpg} & \includegraphics[height=2.75cm]{ask.jpg} \\
+\\
+\includegraphics[height=2.75cm]{where.jpg} & \includegraphics[height=2.75cm]{write.jpg} & \includegraphics[height=2.75cm]{she.jpg} & \includegraphics[height=2.75cm]{wrong.jpg} & \includegraphics[height=2.75cm]{name.jpg}
+
+\end{tabular}
+\end{table*}
+\item Write the English translation of A, B, and C below.
+\begin{description}
+\item{A.}
+
+\begin{table*}
+\begin{tabular}{c c c c}
+\includegraphics[height=2.75cm]{hello.png} & \includegraphics[height=2.75cm]{me.jpg} & \includegraphics[height=2.75cm]{name.jpg} & \textbf{L-I-N-D-A}\\
+\end{tabular}
+\end{table*}
+\newpage
+\item{B.}
+\begin{table*}
+\begin{tabular}{c c c }
+\includegraphics[height=2.75cm]{she.jpg} & \includegraphics[height=2.75cm]{name.jpg} & \includegraphics[height=2.75cm]{what.jpg} \\
+\end{tabular}
+\end{table*}
+
+\item{C.}
+\begin{table*}[h!]
+\begin{tabular}{c c }
+\includegraphics[height=2.75cm]{you.jpg} & \includegraphics[height=2.75cm]{who1.jpg}  
+\end{tabular}
+\end{table*}
+
+
+\end{description}
+\item Arrange these pictures in A, B, and C in the correct grammatical order for Hawai`i Sign Language.
+
+\begin{description}
+\item{A.}
+\begin{table*}[h!]
+\begin{tabular}{c c }
+\includegraphics[height=2.75cm]{who1.jpg} & \includegraphics[height=2.75cm]{name1.jpg}  
+\end{tabular}
+\end{table*}
+\item{B.} 
+\begin{table*}[h!]
+\begin{tabular}{c c c}
+\includegraphics[height=2.75cm]{name.jpg} & \includegraphics[height=2.75cm]{you.jpg}  & \includegraphics[height=2.75cm]{what.jpg} 
+\end{tabular}
+\end{table*}
+\item{C.}
+\begin{table*}[h!]
+\begin{tabular}{c c c}
+\includegraphics[height=2.75cm]{where.jpg} & \includegraphics[height=2.75cm]{you.jpg}  & \includegraphics[height=2.75cm]{name.jpg} 
+\end{tabular}
+\end{table*}
+
+\end{description}
+
+\end{enumerate}
+
+\subsection{Additional Linguistic and Cultural Information}\index{Hawai`i Sign Language!cultural information}
+
+The normally preferred word order for statements in Hawai`i Sign Language\index{Hawai`i Sign Language!word order} is subject + object + verb.
+
+Question words\index{question!question word} like `who', `what', and `where' in HSL normally occur at the end of the sentence, no matter whether these words function as the subject or object of the sentence. Question words like `who', `what', and `where' also have distinct facial expressions. The signs for `what' and  `who' differ only in non-manual expression. Watch your teacher’s facial expression on each of these signs carefully.
+
+Any statement can be made into a yes-no question,\index{question!yes-no question} by adding appropriate question intonation on the face. A yes-no facial intonation usually involves raising the eyebrows and tilting the head back slightly. There may also be a simultaneous forward movement of the shoulders. Watch your teacher’s non-manual expression for yes-no questions.\index{sign!non-manual}
+
+Note that pointing to an object with the index finger, which is often called indexing, can be used like a demonstrative pronoun\index{pronoun!demonstrative pronoun} in spoken/written language and for that reason is called a pronoun (PRO) in this book.\index{pronoun}
+
+The signs for `name' and `write' are similar. Watch your teacher carefully.
+
+If there is no previous context for talking about name signs, the sign for `name' can be added before `name-sign'.\index{name}
+
+The signs indicated throughout the book are shown for people who are right-handed. These signs use the right hand as the dominant hand\index{sign!hand dominance} and the left hand as non-dominant. If you are left-handed, make the signs using your  left hand as the dominant hand instead, and your right hand as the non-dominant hand.
+
+\chapter{Lesson 2 Basic Numbers, Days of the Week}
+
+\section{Section 1 Read before Class}
+
+\newthought{This lesson is divided} into two parts. The first part deals with numbers and the second part with days of the week, which are related to numbers in Hawai`i Sign Language (HSL).
+
+In the first part of the lesson related to numbers, you will learn numbers from 0--10 in HSL. You should be aware that there is more than one system used for the numbers 6--9. The counting system included in this lesson has the most regular pattern and is the easiest to learn. In addition to the numbers 0--10, you will learn to ask and answer questions\index{question} related to the identification of numbers as well as to ask and answer questions related to `how many.'\index{number!cardinal numbers}
+
+In the second part of the lesson related to days of the week, you will learn vocabulary for days of the week, `yesterday', `today', and \index{days of the week} `tomorrow', among others. In addition, you will learn to ask and answer questions about  days of the week and dates.
+
+At this point, you should stop reading until after you have attended class. After class, you should use Section 2 for review and further practice.
+\newpage
+\section{Section 2 For Review after Class}
+\subsection{Basic Numbers}\index{vocabulary}
+
+\noindent A.~Vocabulary Already Presented During Class\\
+
+\vspace{0.25cm} \noindent Cardinal Numerals\index{number!cardinal numbers}
+
+\begin{table*}[h!]
+
+\begin{tabular}{c c c }
+\includegraphics[height=2.75cm]{zero.jpg}&\includegraphics[height=2.75cm]{one.jpg}&\includegraphics[height=2.75cm]{two.jpg}\\
+\footnotesize zero & \footnotesize one & \footnotesize two\\
+\includegraphics[height=2.75cm]{three.jpg}&\includegraphics[height=2.75cm]{four.jpg}&\includegraphics[height=2.75cm]{five.jpg}\\
+\footnotesize three & \footnotesize four & \footnotesize five\\
+\includegraphics[height=2.75cm]{six.jpg}&\includegraphics[height=2.75cm]{seven.jpg}&\includegraphics[height=2.75cm]{eight.jpg}\\
+\footnotesize six & \footnotesize seven & \footnotesize eight\\
+\includegraphics[height=2.75cm]{nine.jpg}&\includegraphics[height=2.75cm]{ten.jpg}&\\
+\footnotesize nine & \footnotesize ten & \\
+
+\end{tabular}
+\end{table*}
+ \noindent Nouns\index{noun}
+
+\begin{table*}[h!]
+
+\begin{tabular}{c c c c}
+\includegraphics[height=2.75cm]{number.jpg}&\includegraphics[height=2.75cm]{flatstick.jpg}&\includegraphics[height=2.75cm]{roundstick.jpg} & \includegraphics[height=2.75cm]{chopsticks.jpg} \\
+\footnotesize number & \footnotesize stick (flat) & \footnotesize stick (round)& \footnotesize chopsticks\\
+\end{tabular}
+\end{table*}
+
+\vspace{0.25cm}\noindent Verbs\index{verb}
+
+\begin{table*}[h!]
+
+\begin{tabular}{c c }
+\includegraphics[height=2.75cm]{havehave.jpg}&\includegraphics[height=2.75cm]{ihave.jpg}\\
+\footnotesize have & \footnotesize I have\\
+\includegraphics[height=2.75cm]{youhave.jpg} & \includegraphics[height=2.75cm]{hehas.jpg} \\
+  \footnotesize you have & \footnotesize he/she has\\
+\end{tabular}
+\end{table*}
+
+
+\vspace{0.25cm}\noindent Question Words\index{question!question word}
+
+\begin{table}[h!]
+\begin{tabular}{c}
+\includegraphics[height=2.75cm]{howmany.jpg}\\
+\footnotesize how-many\\
+\end{tabular}
+\end{table}
+
+\vspace{0.25cm}\noindent B.~Grammatical Examples and Patterns Already Presented in Class
+
+\vspace{0.25cm}\noindent \textbf{Example 1}
+\begin{table*}[h!]
+\begin{tabular}{c | c c}
+\includegraphics[height=2.75cm]{she.jpg}&\includegraphics[height=2.75cm]{number.jpg}&\includegraphics[height=2.75cm]{what.jpg}\\
+\footnotesize Subject & \footnotesize Predicate & \footnotesize ?\\
+\footnotesize [PRO] & \footnotesize [N & \footnotesize QW]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `What number is this?'
+\newpage
+
+\vspace{0.25cm}\noindent \textbf{Example 2}
+\begin{table*}[h!]
+\begin{tabular}{c c | c | c}
+\includegraphics[height=2.4cm]{roundstick.jpg}&\includegraphics[height=2.4cm]{six.jpg}&\includegraphics[height=2.4cm]{have.jpg} & \includegraphics[height=2.4cm]{who1.jpg} \\
+\footnotesize Object & \footnotesize Predicate & \footnotesize Predicate &  \footnotesize Subject?\\
+\footnotesize [N & \footnotesize NUM] & \footnotesize [V] &  \footnotesize [QW]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `Who has six round sticks?'
+
+\vspace{0.25cm}\noindent \textbf{Example 3}
+\begin{table*}[h!]
+\begin{tabular}{c | c c| c}
+\includegraphics[height=2.4cm]{name1.jpg}&\includegraphics[height=2.4cm]{roundstick.jpg}&\includegraphics[height=2.4cm]{six.jpg} & \includegraphics[height=2.4cm]{have.jpg} \\
+\footnotesize Subject & \footnotesize Object &  &  \footnotesize Predicate\\
+\footnotesize [N] & \footnotesize [N & \footnotesize NUM] &  \footnotesize [V]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `xxxxx has six round sticks.'
+
+\vspace{0.25cm}\noindent \textbf{Example 4}
+\begin{table*}[h!]
+\begin{tabular}{c | c | c | c}
+\includegraphics[height=2.4cm]{me.jpg}&\includegraphics[height=2.4cm]{flatstick.jpg}&\includegraphics[height=2.4cm]{ihave.jpg} & \includegraphics[height=2.4cm]{howmany.jpg} \\
+\footnotesize Subject & \footnotesize Object (Head) & \footnotesize Predicate & \footnotesize Object (Modifiers)  \\
+\footnotesize [N] & \footnotesize [N] & \footnotesize [V] &  \footnotesize [QW]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `How many flat sticks do I have?'
+\newpage
+
+\subsection{Days of the Week}\index{days of the week}
+
+\noindent A.~Vocabulary Already Presented During Class\index{vocabulary}
+
+\vspace{0.25cm} \noindent Nouns\index{noun}
+
+\begin{table*}[h!]
+\begin{tabular}{c c c}
+\includegraphics[height=2.75cm]{today.jpg} & \includegraphics[height=2.75cm]{yesterday.jpg}& \includegraphics[height=2.75cm]{tomorrow.jpg}\\
+\footnotesize today & \footnotesize yesterday & \footnotesize tomorrow\\
+
+
+\end{tabular}
+\end{table*}
+
+
+\begin{table*}[h!]
+\begin{tabular}{c c c}
+\includegraphics[height=2.75cm]{day.jpg} & \includegraphics[height=2.75cm]{daysofweek.jpg}& \includegraphics[height=2.75cm]{sunday.jpg}\\
+\footnotesize day & \footnotesize days-of-the-week & \footnotesize Sunday\\
+
+
+\end{tabular}
+\end{table*}
+
+\begin{table*}[h!]
+\begin{tabular}{c c}
+\includegraphics[height=2.75cm]{monday.jpg} & \includegraphics[height=2.75cm]{tuesday.jpg}\\
+\footnotesize Monday & \footnotesize Tuesday\\
+\includegraphics[height=2.75cm]{wednesday.jpg} & \includegraphics[height=2.75cm]{thursday.jpg}\\
+\footnotesize Wednesday & \footnotesize Thursday\\
+\includegraphics[height=2.75cm]{Friday.jpg} & \includegraphics[height=2.75cm]{Saturday.jpg}\\
+\footnotesize Friday & \footnotesize Saturday\\
+
+
+\end{tabular}
+\end{table*}
+\newpage
+
+\vspace{0.25cm} \noindent B.~Grammatical Patterns Already Presented During Class
+
+\vspace{0.25cm}\noindent \textbf{Example 5}
+\begin{table*}[h!]
+\begin{tabular}{c | c c}
+\includegraphics[height=2.75cm]{today.jpg}&\includegraphics[height=2.75cm]{day.jpg}&\includegraphics[height=2.75cm]{what.jpg}  \\
+\footnotesize Subject &  \footnotesize Predicate & \footnotesize ?  \\
+\footnotesize [N] & \footnotesize [N &   \footnotesize QW]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `What day is today?'
+
+
+
+\noindent \textbf{Example 6}
+\begin{table*}[h!]
+\begin{tabular}{c | c}
+\includegraphics[height=2.75cm]{today.jpg}&\includegraphics[height=2.75cm]{monday.jpg}  \\
+\footnotesize Subject &  \footnotesize Predicate  \\
+\footnotesize [N] & \footnotesize [N] \\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `Today is Monday.'
+
+\vspace{0.25cm}\noindent \textbf{Example 7}
+\begin{table*}[h!]
+\begin{tabular}{c | c}
+\includegraphics[height=2.75cm]{tomorrow.jpg}&\includegraphics[height=2.75cm]{tuesday.jpg}  \\
+\footnotesize Subject &  \footnotesize Predicate  \\
+\footnotesize [N] & \footnotesize [N] \\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `Tomorrow is Tuesday.'
+\newpage
+
+\vspace{0.25cm}\noindent \textbf{Example 8}
+\begin{table*}[h!]
+\begin{tabular}{c | c c}
+\includegraphics[height=2.5cm]{sunday.jpg}&\includegraphics[height=2.5cm]{day.jpg} &\includegraphics[height=2.5cm]{howmany.jpg}  \\
+\footnotesize Subject &  \footnotesize Predicate  & \footnotesize ?\\
+\footnotesize [N] & \footnotesize [N & \footnotesize QW] \\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `What day is Sunday?'
+
+\vspace{0.25cm}\noindent \textbf{Example 9}
+\begin{table*}[h!]
+\begin{tabular}{c | c c}
+\includegraphics[height=2.5cm]{sunday.jpg}&\includegraphics[height=2.5cm]{day.jpg} &\includegraphics[height=2.5cm]{seven.jpg}  \\
+\footnotesize Subject &  \footnotesize Predicate  & \\
+\footnotesize [N] & \footnotesize [N & \footnotesize NUM] \\
+\end{tabular}
+\end{table*}
+\begin{fullwidth}
+Best English Translation: `Sunday is the seventh (day of the month).'
+\end{fullwidth}
+
+\newpage
+\subsection{Homework}\index{homework}
+\begin{enumerate}
+\item Count in order from zero to 10 in Hawai`i Sign Language.
+\item Count in reverse order from 10 to zero in Hawai`i Sign Language.
+\item Ask and answer the following questions in Hawai`i Sign Language.
+\begin{description}
+\item{A.} Who has the number 2?
+\item{B.} xxxxx has the number 2.
+\end{description}
+\item Ask and answer the following questions in Hawai`i Sign Language.
+\begin{description}
+\item{A.} What number does xxxxx have?
+\item{B.} xxxxx has the number 3.
+\end{description}
+\item Write the English translation under each of the pictures of the following vocabulary items in Hawai`i Sign Language.
+\begin{table*}[h!]
+\begin{tabular}{c c l c c}
+\includegraphics[height=2.5cm]{two.jpg} & \includegraphics[height=2.5cm]{three.jpg} & \includegraphics[height=2.5cm]{six.jpg} & \includegraphics[height=2.5cm]{eight.jpg} & \includegraphics[height=2.5cm]{zero.jpg}\\
+& & & & \\
+\includegraphics[height=2.5cm]{one.jpg} & \includegraphics[height=2.5cm]{four.jpg} & \includegraphics[height=2.5cm]{five.jpg} & \includegraphics[height=2.5cm]{seven.jpg} & \includegraphics[height=2.5cm]{nine.jpg}\\
+& & & & \\
+
+\end{tabular}
+\end{table*}
+
+\item Sign the following numbers in the order given below.\\ 1, 7, 9, 10—6,7,8,5,0
+\item Write the English translation for each of the following sentences in Hawai`i Sign Language.
+\begin{description}
+\item{A.} 
+\begin{table*}[h!]
+\begin{tabular}{c c l c}
+\includegraphics[height=2.5cm]{me.jpg} & \includegraphics[height=2.5cm]{flatstick.jpg} & \includegraphics[height=2.5cm]{eight.jpg} & \includegraphics[height=2.5cm]{ihave.jpg}\\
+
+\end{tabular}
+\end{table*}
+
+\newpage
+\item{B.}
+\begin{table*}[h!]
+\begin{tabular}{c c l c}
+\includegraphics[height=2.5cm]{you.jpg} & \includegraphics[height=2.5cm]{chopsticks.jpg} & \includegraphics[height=2.5cm]{youhave.jpg} & \includegraphics[height=2.5cm]{howmany.jpg}\\
+
+\end{tabular}
+\end{table*}
+
+\item{C.}
+\begin{table*}[h!]
+\begin{tabular}{c c l c}
+\includegraphics[height=2.5cm]{tomorrow.jpg} & \includegraphics[height=2.5cm]{sunday.jpg} & \includegraphics[height=2.5cm]{day.jpg} & \includegraphics[height=2.5cm]{eight.jpg}\\
+
+\end{tabular}
+\end{table*}
+\end{description}
+\item Look at the following sentences. If they follow the correct grammatical structure and order of Hawai`i Sign Language, write the word `true'. If they do not follow the correct grammatical structure or order of Hawai`i Sign Language write the word `false'. State what corrections need to be made.
+\begin{description}
+\item{A.}
+\begin{table*}[h!]
+\begin{tabular}{c c c}
+\includegraphics[height=2.5cm]{who.jpg} & \includegraphics[height=2.5cm]{flatstick.jpg} & \includegraphics[height=2.5cm]{five.jpg} \\
+
+\end{tabular}
+\end{table*}
+
+\item{B.}
+\begin{table*}[h!]
+\begin{tabular}{c c c}
+\includegraphics[height=2.5cm]{name1.jpg} & \includegraphics[height=2.5cm]{howmany.jpg} & \includegraphics[height=2.5cm]{chopsticks.jpg} \\
+
+\end{tabular}
+\end{table*}
+
+\item{C.}
+\begin{table*}[h!]
+\begin{tabular}{c c c}
+\includegraphics[height=2.5cm]{me.jpg} & \includegraphics[height=2.5cm]{four.jpg} & \includegraphics[height=2.5cm]{roundstick.jpg} \\
+
+\end{tabular}
+\end{table*}
+\newpage
+\item{D.}
+\begin{table*}[h!]
+\begin{tabular}{c c c}
+\includegraphics[height=2.5cm]{today.jpg} & \includegraphics[height=2.5cm]{day.jpg} & \includegraphics[height=2.5cm]{howmany.jpg} \\
+
+\end{tabular}
+\end{table*}
+
+\end{description}
+
+\end{enumerate}
+
+\vspace{2cm}
+\subsection{Additional Linguistic and Cultural Information}\index{Hawai`i Sign Language!cultural information}
+
+The normal word order within noun phrases for HSL is noun + number.\index{Hawai`i Sign Language!word order}\index{noun}\index{number}
+
+Question words like `how-many' and `what-day' normally occur at the end of the sentence and have a distinct facial expression. Watch your teacher’s facial expression on these words carefully.\index{question!question word}
+
+Note that the sign `to have' is completely non-manual. When `have' is used as a verb in the sentence, `have' is inflected by adding a pronoun that agrees in person with the subject of the sentence.\index{pronoun}\index{inflection}\index{sign!non-manual}
+
+The signs for days of the week are the oldest variants found. Signs for days of the week\index{days of the week} recorded in this lesson are based on their relationship to Sunday: Monday (Sunday + the day of the week after), Tuesday (Sunday + the day of the week after + the day of the week after), Wednesday (Sunday + the day of the week after + the day of the week after + the day of the week after), Thursday (Sunday + the day of the week after + the day of the week after + 4), etc. Signers who claim to use HSL, but who actually use CHSL,\index{Creole Hawai`i Sign Language} use initialized variants for days of the week based on ASL\index{American Sign Language} one-handed fingerspelling.\index{sign!one-handed sign}\index{alphabet!fingerspelling}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Lesson 3 Colors}
+
+\section{Section 1 Read before Class}
+\newthought{This lesson is divided} into two parts. The first part deals with the identification
+of basic colors\index{colors} and the second part with using color vocabulary in conversations in
+Hawai`i Sign Language (HSL).
+
+In the first part of the lesson related to identification of colors, you will learn 15
+signs for colors in HSL. In addition, you will learn to ask and answer
+questions related to `what color' objects are as well as to ask and answer questions
+related to `who' has certain color objects as well as `how many' of the objects they
+have.
+
+In the second part of the lesson related to the use of color vocabulary in
+conversations, you will learn additional vocabulary and grammatical structures that
+will enable you to discuss colors you and others `like' and `dislike'. In addition, you will begin to learn the conversational
+strategies for listing objects in HSL.
+
+At this point, you should stop reading until after you have attended class.
+After class, you should use Section 2 for review and further practice.
+
+\newpage
+\section{Section 2 For Review after Class}
+\subsection{Identifying Colors}
+
+\noindent A.~Vocabulary Already Presented During Class\index{vocabulary}
+
+\vspace{0.25cm} \noindent Adjectives\index{adjective} (can also be used as nouns)
+
+\begin{table*}[h!]
+\begin{tabular}{c c c}
+\includegraphics[height=2.75cm]{black.jpg}&\includegraphics[height=2.75cm]{red.jpg}&\includegraphics[height=2.75cm]{pink.jpg}\\
+\footnotesize black & \footnotesize red & \footnotesize pink\\
+\includegraphics[height=2.75cm]{brown.jpg}&\includegraphics[height=2.75cm]{yellow.jpg}&\includegraphics[height=2.75cm]{yellow2.jpg}\\
+\footnotesize brown & \footnotesize yellow (1) & \footnotesize yellow (2)\\
+\includegraphics[height=2.75cm]{blue.jpg}&\includegraphics[height=2.75cm]{blue2.jpg}&\includegraphics[height=2.75cm]{purple.jpg}\\
+\footnotesize blue (1) & \footnotesize blue (2) & \footnotesize purple\\
+\includegraphics[height=2.75cm]{white.jpg}&\includegraphics[height=2.75cm]{silver.jpg}&\includegraphics[height=2.75cm]{silver2.jpg}\\
+\footnotesize white & \footnotesize silver (1) & \footnotesize silver (2)\\
+\includegraphics[height=2.75cm]{green.jpg}&\includegraphics[height=2.75cm]{green2.jpg}&\includegraphics[height=2.75cm]{orange.jpg}\\
+\footnotesize green (1) & \footnotesize greeen (2) & \footnotesize orange\\
+
+\end{tabular}
+\end{table*}
+\newpage
+\noindent Nouns\index{noun}
+
+\begin{table*}[h!]
+\begin{tabular}{c}
+\includegraphics[height=2.75cm]{color.jpg}\\
+\footnotesize color\\
+\end{tabular}
+\end{table*}
+
+\vspace{0.25cm}\noindent Ordinal Numbers\index{number!ordinal numbers}
+
+\begin{table*}[h!]
+
+\begin{tabular}{c c c }
+\includegraphics[height=2.75cm]{first.jpg}&\includegraphics[height=2.75cm]{second.jpg}&\includegraphics[height=2.75cm]{third.jpg}\\
+\footnotesize first (in-a-list) & \footnotesize second (in-a-list) & \footnotesize third (in-a-list)\\
+\end{tabular}
+\end{table*}
+
+\vspace{0.25cm}\noindent B.~Grammatical Examples and Patterns Already Presented During Class
+
+\vspace{0.25cm}\noindent \textbf{Example 1}
+\begin{table*}[h!]
+\begin{tabular}{c | c c}
+\includegraphics[height=2.75cm]{stuff.jpg}&\includegraphics[height=2.75cm]{color.jpg}&\includegraphics[height=2.75cm]{what.jpg}\\
+\footnotesize Subject & \footnotesize Predicate & \footnotesize ?\\
+\footnotesize [PRO] & \footnotesize [N & \footnotesize QW]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `What are these colors here?'
+
+\vspace{0.25cm}\noindent \textbf{Example 2}
+\begin{table*}[h!]
+\begin{tabular}{c  c}
+\includegraphics[height=2.75cm]{purple.jpg}&\includegraphics[height=2.75cm]{red.jpg}\\
+\footnotesize Predicate & \\
+\footnotesize [AJ & \footnotesize AJ]\\
+\end{tabular}
+\end{table*}
+\begin{fullwidth}
+(Subject `those' is deleted.) Best English Translation: `Purple and red.'
+\end{fullwidth}
+\newpage
+\noindent \textbf{Example 3}
+\begin{table*}[h!]
+\begin{tabular}{c |c | c | c}
+\includegraphics[height=2.75cm]{name1.jpg}&\includegraphics[height=2.75cm]{color.jpg}&\includegraphics[height=2.75cm]{hehas.jpg} & \includegraphics[height=2.75cm]{howmany.jpg} \\
+\footnotesize Subject & \footnotesize Object (Head) & \footnotesize Predicate &  \footnotesize Object (Modifier)\\
+\footnotesize [N] & \footnotesize [N] & \footnotesize [V] &  \footnotesize [QW]\\
+
+\end{tabular}
+\end{table*}
+
+Best English Translation: `How many colors does xxxxx have?'
+
+\vspace{0.25cm}\noindent \textbf{Example 4}
+\begin{table*}[h!]
+\begin{tabular}{c |c  c | c}
+\includegraphics[height=2.75cm]{name1.jpg}&\includegraphics[height=2.75cm]{color.jpg}&\includegraphics[height=2.75cm]{two.jpg} & \includegraphics[height=2.75cm]{hehas.jpg} \\
+\footnotesize Subject & \footnotesize Object & & \footnotesize Predicate \\
+\footnotesize [N] & \footnotesize [N & \footnotesize NUM] &  \footnotesize [V]\\
+
+\end{tabular}
+\end{table*}
+
+Best English Translation: `Xxxxx has two colors.'
+
+\vspace{0.25cm}\noindent \textbf{Example 5}
+\begin{table*}[h!]
+\begin{tabular}{c | c c}
+\includegraphics[height=2.75cm]{stuff.jpg}&\includegraphics[height=2.75cm]{color.jpg}&\includegraphics[height=2.75cm]{howmany.jpg}\\
+\footnotesize Subject & \footnotesize Predicate & \footnotesize ?\\
+\footnotesize [PRO] & \footnotesize [N & \footnotesize QW]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `How many colors are here?'
+\newpage
+\noindent \textbf{Example 6}
+
+\noindent Sentence 1
+\begin{table*}[h!]
+\begin{tabular}{c c}
+\includegraphics[height=2.75cm]{color.jpg}&\includegraphics[height=2.75cm]{three.jpg}\\
+\footnotesize Subject & \footnotesize Predicate \\
+\footnotesize [N] & \footnotesize [NUM]\\
+\end{tabular}
+\end{table*}
+
+\noindent Sentence 2
+
+\begin{table*}[h!]
+\begin{tabular}{c c}
+\includegraphics[height=2.75cm]{first.jpg}&\includegraphics[height=2.75cm]{blue.jpg}\\
+\footnotesize Subject & \footnotesize Predicate \\
+\footnotesize [NUM] & \footnotesize [AJ]\\
+\end{tabular}
+\end{table*}
+
+\noindent Sentence 3
+
+\begin{table*}[h!]
+\begin{tabular}{c c}
+\includegraphics[height=2.75cm]{second.jpg}&\includegraphics[height=2.75cm]{yellow.jpg}\\
+\footnotesize Subject & \footnotesize Predicate \\
+\footnotesize [NUM] & \footnotesize [AJ]\\
+\end{tabular}
+\end{table*}
+
+\noindent Sentence 4
+
+\begin{table*}[h!]
+\begin{tabular}{c c}
+\includegraphics[height=2.75cm]{third.jpg}&\includegraphics[height=2.75cm]{pink.jpg}\\
+\footnotesize Subject & \footnotesize Predicate \\
+\footnotesize [NUM] & \footnotesize [AJ]\\
+\end{tabular}
+\end{table*}
+
+\begin{fullwidth}
+Best English Translation: `There are three colors. The first is blue, the second is yellow, and the third is pink.'\end{fullwidth}
+\newpage
+
+\subsection{Talking About Colors}
+
+\noindent A.~Vocabulary Already Presented During Class\index{vocabulary}
+
+\vspace{0.25cm} \noindent Nouns\index{noun}\index{clothing}
+
+\begin{table*}[h!]
+\begin{tabular}{c c c c}
+\includegraphics[height=2.65cm]{shirt.jpg} & \includegraphics[height=2.65cm]{pants.jpg}& \includegraphics[height=2.65cm]{dress.jpg} &\includegraphics[height=2.65cm]{hair.jpg}\\
+\footnotesize shirt & \footnotesize pants & \footnotesize dress & \footnotesize hair\\
+
+
+\end{tabular}
+\end{table*}
+
+\vspace{0.25cm}\noindent Verbs\index{verb}
+
+\begin{table*}[h!]
+\begin{tabular}{c c }
+\includegraphics[height=2.65cm]{like.jpg} & \includegraphics[height=2.65cm]{dislike.jpg}\\
+\footnotesize like& \footnotesize dislike, don't-like \\
+
+
+\end{tabular}
+\end{table*}
+
+\vspace{0.25cm}\noindent B.~Grammatical Examples Already Presented in Class
+
+\vspace{0.25cm}\noindent \textbf{Example 7}
+\begin{table*}[h!]
+\begin{tabular}{c | c | c | c}
+\includegraphics[height=2.65cm]{you.jpg}&\includegraphics[height=2.65cm]{color.jpg}&\includegraphics[height=2.65cm]{like.jpg} & \includegraphics[height=2.65cm]{what.jpg} \\
+\footnotesize Subject & \footnotesize Object (Head) & \footnotesize Predicate & \footnotesize Object (Modifier)  \\
+\footnotesize [PRO] & \footnotesize [N] & \footnotesize [V] &  \footnotesize [QW]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `What color(s) do you like?'
+
+\vspace{0.25cm}\noindent \textbf{Example 8}
+\begin{table*}[h!]
+\begin{tabular}{c | c | c }
+\includegraphics[height=2.4cm]{me.jpg}&\includegraphics[height=2.4cm]{blue.jpg}&\includegraphics[height=2.4cm]{like.jpg} \\
+\footnotesize Subject & \footnotesize Object & \footnotesize Predicate   \\
+\footnotesize [PRO] & \footnotesize [N] & \footnotesize [V]   \\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `I like blue.'
+\newpage
+
+\vspace{0.25cm}\noindent \textbf{Example 9}
+\begin{table*}[h!]
+\begin{tabular}{c | c | c | c}
+\includegraphics[height=2.65cm]{you.jpg}&\includegraphics[height=2.65cm]{color.jpg}&\includegraphics[height=2.65cm]{dislike.jpg} & \includegraphics[height=2.65cm]{what.jpg} \\
+\footnotesize Subject & \footnotesize Object (Head) & \footnotesize Predicate & \footnotesize Object (Modifier)  \\
+\footnotesize [PRO] & \footnotesize [N] & \footnotesize [NEG V] &  \footnotesize [QW]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `What color(s) do you not like?'
+
+\vspace{0.25cm}\noindent \textbf{Example 10}
+\begin{table*}[h!]
+\begin{tabular}{c | c  c | c}
+\includegraphics[height=2.65cm]{me.jpg}&\includegraphics[height=2.65cm]{black.jpg}&\includegraphics[height=2.65cm]{pink.jpg} & \includegraphics[height=2.65cm]{dislike.jpg} \\
+\footnotesize Subject & \footnotesize Object  & & \footnotesize Predicate  \\
+\footnotesize [PRO] & \footnotesize [N & \footnotesize N] &  \footnotesize [NEG V]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `I don't like black or pink.'
+
+
+\vspace{0.25cm}\noindent \textbf{Example 11}
+\begin{table*}[h!]
+\begin{tabular}{c  c | c  c}
+\includegraphics[height=2.65cm]{you.jpg}&\includegraphics[height=2.65cm]{hair.jpg}&\includegraphics[height=2.65cm]{color.jpg} & \includegraphics[height=2.65cm]{what.jpg} \\
+\footnotesize Subject &   & \footnotesize Predicate & \footnotesize ?  \\
+\footnotesize [PRO & \footnotesize N] & \footnotesize [N &  \footnotesize QW]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `What color is your hair?'
+
+\vspace{0.25cm}\noindent \textbf{Example 12}
+\begin{table*}[h!]
+\begin{tabular}{c  c | c }
+\includegraphics[height=2.65cm]{me.jpg}&\includegraphics[height=2.65cm]{hair.jpg}&\includegraphics[height=2.65cm]{brown.jpg}  \\
+\footnotesize Subject &   & \footnotesize Predicate   \\
+\footnotesize [PRO & \footnotesize N] & \footnotesize [N \\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `My hair is brown.'
+\newpage
+\subsection{Homework}\index{homework}
+\begin{enumerate}
+\item Sign the following sentences in HSL.
+Make sure you follow the grammar of HSL, as you have been taught.
+
+
+
+\begin{description}
+\item{A.} xxxxx likes red. She doesn't like blue.
+\item{B.} I like blue shirts.
+\item{C.} He doesn't like black pants.
+\item{D.} Her hair is brown.
+\end{description}
+\item Translate the following paragraph into HSL using the vocabulary and grammatical patterns you have been taught.
+
+\vspace{0.25cm}Hello. My name sign is XXXXX. My hair is black (but) I don’t like it. I like brown hair. My shirt is red. I like red and white. What colors do you like?
+
+\item Practice making the signs for each of the colors below.
+\begin{description}
+\item{A.} \begin{table*}[h!]
+\begin{tabular}{c c  c c c}
+\includegraphics[height=2cm]{pinkblock.jpg} & \includegraphics[height=2cm]{purpleblock.jpg} & \includegraphics[height=2cm]{blueblock.jpg} & \includegraphics[height=2cm]{brownblock.jpg} & \includegraphics[height=2cm]{yellowblock.jpg}\\
+
+\end{tabular}
+\end{table*}
+
+\end{description}
+\item Describe the colors of the hair and clothes of the people in the picture below. Make sure you follow the grammar of HSL as you have been taught.
+
+\begin{table*}[h!]
+\begin{tabular}{c c}
+\includegraphics[height=6.5cm]{person1.jpg} & \includegraphics[height=6.5cm]{person2.jpg} \\
+
+\end{tabular}
+\end{table*}
+
+
+
+\end{enumerate}
+\newpage
+\subsection{Additional Linguistic and Cultural Information}\index{Hawai`i Sign Language!cultural information}
+
+The negative verb\index{verb!negative verb} `don’t-like, dislike' has a distinct facial expression. Watch your teacher’s facial expression on this sign carefully.\index{sign!non-manual sign}
+
+When the question word `what' occurs with a noun (e.g. `color') as part of the object, note that the noun occurs in the normal object position before the verb and `what' occurs in the normal question word position at the end of the sentence. Thus the two parts of the object are separated.\index{question!question word} \index{noun}
+
+The original signs for `blue', `green', and `yellow' in HSL are based on objects. These signs are not used by CHSL users. These signs were used before the introduction of the two-handed alphabet\index{alphabet!two-handed alphabet} adopted by HSL signers. After the two-handed alphabet was adopted, signs for these three colors were based on letters in the two-handed fingerspelled alphabet. After the introduction of ASL\index{American Sign Language} into Hawai`i and the development of CHSL,\index{Creole Hawai`i Sign Language} new signs based on ASL signs for `blue', `green', and `yellow' (which are in fact related to ASL fingerspelling) developed.\index{alphabet!fingerspelling}\index{colors}
+
+
+
+%%%%%%%%%%%%%%
+
+\chapter{Lesson 4 Fruits, Part 1}
+\section{Section 1 Read before Class}
+
+\newthought{This lesson is divided} into two parts. The first part deals with the identification
+of fruits\index{foods!fruits} found in Hawai`i and the second part with using vocabulary previously
+learned to carry on conversations related to fruits and the eating of fruits in Hawai`i
+Sign Language.
+
+In addition, you will learn to ask and answer questions related to the names of various fruits, who has, likes, or dislikes certain fruits, and how many fruits a person has at any one time.\index{foods!fruits!eating fruits|see {eating}}
+
+In the second part of the lesson, related to the use of previously learned vocabulary in conversations related to fruits, you will learn additional vocabulary
+related to how different fruits are eaten. You will learn, for example, that there are
+different signs for eating-watermelon, eating-grapes,\index{eating} and eating-mangos, among
+others. These verbs carry important lexical and grammatical distinctions. You will
+also learn how to ask how certain fruits (and other objects) are eaten, so that you
+can learn additional signs for eating, not introduced in this lesson.
+
+While you should be doing the homework in each lesson as a regular part of
+your study, it is especially important to remember to do the homework
+in this lesson, since the homework in this lesson will give you opportunity to review
+color vocabulary already learned and apply color vocabulary to the description of
+fruits.\index{colors}
+
+At this point, you should stop reading until after you have attended class.
+After class, you should use Section 2 for review and further practice.
+\newpage
+\section{Section 2 For Review after Class}
+\subsection{Identifying Fruits}\index{foods!fruits}
+
+\noindent A.~Vocabulary Already Presented During Class\index{vocabulary}
+
+\vspace{0.25cm} \noindent Nouns\index{noun}
+
+\begin{table*}[h!]
+\begin{tabular}{c c c}
+\includegraphics[height=2.75cm]{watermelon.jpg}&\includegraphics[height=2.75cm]{banana.jpg}&\includegraphics[height=2.75cm]{mango.jpg}\\
+\footnotesize watermelon & \footnotesize banana & \footnotesize mango\\
+\includegraphics[height=2.75cm]{orangefruit.jpg}&\includegraphics[height=2.75cm]{pineapple.jpg}&\includegraphics[height=2.75cm]{grape.jpg}\\
+\footnotesize orange (fruit) & \footnotesize pineapple & \footnotesize grape\\
+\multicolumn{2}{c}{\includegraphics[height=2.75cm]{grapefruit.jpg}}& \includegraphics[height=2.75cm]{coconut.jpg}\\
+\multicolumn{2}{c}{\footnotesize  grapefruit}&\footnotesize  coconut\\
+\multicolumn{2}{c}{\includegraphics[height=2.75cm]{longan.jpg}}& \\
+\multicolumn{2}{c}{\footnotesize  longan}&\\
+\multicolumn{2}{c}{\includegraphics[height=2.75cm]{fruit.jpg}}& \\
+\multicolumn{2}{c}{\footnotesize  fruit}&\\
+
+
+\end{tabular}
+\end{table*}
+\newpage
+
+\noindent B.~Grammatical Examples and Patterns Already Presented During Class
+
+\vspace{0.25cm}\noindent \textbf{Example 1}
+\begin{table*}[h!]
+\begin{tabular}{c | c }
+\includegraphics[height=2.75cm]{pineapple1.jpg}&\includegraphics[height=2.75cm]{what.jpg}\\
+\footnotesize Subject & \footnotesize Predicate ?\\
+\footnotesize [PRO] & \footnotesize [QW]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `What is this?'
+
+\vspace{0.25cm}\noindent \textbf{Example 2}
+\begin{table*}[h!]
+\begin{tabular}{c | c| c}
+\includegraphics[height=2.75cm]{she.jpg}&\includegraphics[height=2.75cm]{grape.jpg}&\includegraphics[height=2.75cm]{like.jpg}\\
+\footnotesize Subject & \footnotesize Object & \footnotesize Predicate\\
+\footnotesize [PRO] & \footnotesize [N] & \footnotesize [V]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `He likes grapes.'
+
+\vspace{0.25cm}\noindent \textbf{Example 3}
+\begin{table*}[h!]
+\begin{tabular}{c | c| c}
+\includegraphics[height=2.75cm]{grape.jpg}&\includegraphics[height=2.75cm]{like.jpg}&\includegraphics[height=2.75cm]{who.jpg}\\
+\footnotesize Object & \footnotesize Predicate & \footnotesize Subject ?\\
+\footnotesize [N] & \footnotesize [V] & \footnotesize [QW]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `Who likes grapes?'
+
+\newpage
+
+\vspace{0.25cm}\noindent \textbf{Example 4}
+\begin{table*}[h!]
+\begin{tabular}{c | c c}
+\includegraphics[height=2.75cm]{name1.jpg}&\multicolumn{2}{c}{\includegraphics[height=2.75cm]{fruit.jpg}}\\
+\footnotesize Subject & \multicolumn{2}{c}{\footnotesize Object (Pt 1)} \\
+\footnotesize [N] & \multicolumn{2}{c}{\footnotesize [N]}\\
+\includegraphics[height=2.75cm]{like.jpg}& \includegraphics[height=2.75cm]{what.jpg} &\\
+\footnotesize Predicate & \footnotesize Object (Pt 2) ?\\
+\footnotesize [V] & \footnotesize [QW]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `What kind of fruit does xxxxx like?'
+
+\vspace{0.25cm}\noindent \textbf{Example 5}
+\begin{table*}[h!]
+\begin{tabular}{c | c c}
+\includegraphics[height=2.75cm]{you.jpg}&\multicolumn{2}{c}{\includegraphics[height=2.75cm]{fruit.jpg}}\\
+\footnotesize Subject & \multicolumn{2}{c}{\footnotesize Object (Head)} \\
+\footnotesize [PRO] & \multicolumn{2}{c}{\footnotesize [N]}\\
+\includegraphics[height=2.75cm]{dislike.jpg}& \includegraphics[height=2.75cm]{howmany.jpg} &\\
+\footnotesize Predicate & \footnotesize Object (Modifier) ?\\
+\footnotesize [V] & \footnotesize [QW]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `How many fruits do you dislike?'
+\newpage
+\subsection{Talking About Fruits and Eating Fruits}
+
+\noindent A.~Vocabulary Already Presented During Class\index{vocabulary}
+
+\vspace{0.25cm} \noindent Verbs\index{verb}
+
+\begin{table*}[h!]
+\begin{tabular}{c c c }
+\includegraphics[height=2.75cm]{eatwatermelon.jpg}&\includegraphics[height=2.75cm]{eatorange.jpg}&\includegraphics[height=2.75cm]{eatmango.jpg}\\
+\footnotesize eat-watermelon & \footnotesize eat-orange & \footnotesize eat-mango\\
+\includegraphics[height=2.75cm]{eatgrape.jpg}&\includegraphics[height=2.75cm]{eat.jpg}&\includegraphics[height=2.75cm]{eatcoconut.jpg}\\
+\footnotesize eat-grape & \footnotesize eat-(unspecified food) & \footnotesize eat-coconut\\
+\includegraphics[height=2.75cm]{eatpineapple.jpg}&&\\
+\footnotesize eat-pineapple & &\\
+\end{tabular}
+\end{table*}
+
+\vspace{0.25cm}\noindent Adjectives\index{adjective}
+
+\begin{table*}[h!]
+\begin{tabular}{c c c }
+\includegraphics[height=2.75cm]{same1.jpg}&\includegraphics[height=2.75cm]{same2.jpg}&\includegraphics[height=2.75cm]{different.jpg}\\
+\footnotesize same (1) & \footnotesize same (2) & \footnotesize different\\
+\end{tabular}
+\end{table*}
+
+\vspace{0.25cm}\noindent Question Words\index{question!question word}
+
+\begin{table*}[h!]
+\begin{tabular}{c}
+\includegraphics[height=2.5cm]{how.jpg}\\
+\footnotesize how \\
+\end{tabular}
+\end{table*}
+\newpage
+\noindent B.~Grammatical Examples and Patterns Already Presented During Class
+
+\vspace{0.25cm}\noindent \textbf{Example 6}
+\begin{table*}[h!]
+\begin{tabular}{c | c |c}
+\includegraphics[height=2.75cm]{watermelon.jpg}&\includegraphics[height=2.75cm]{have3.jpg}&\includegraphics[height=2.75cm]{who.jpg}\\
+\footnotesize Object & \footnotesize Predicate & \footnotesize Subject ?\\
+\footnotesize [N] & \footnotesize [V] & \footnotesize [QW]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `Who has watermelon?'
+
+\vspace{0.25cm}\noindent \textbf{Example 7}
+\begin{table*}[h!]
+\begin{tabular}{c | c |c}
+\includegraphics[height=2.75cm]{she.jpg}&\includegraphics[height=2.75cm]{watermelon.jpg}&\includegraphics[height=2.75cm]{hehas.jpg}\\
+\footnotesize Subject& \footnotesize Object & \footnotesize Predicate\\
+\footnotesize [PRO] & \footnotesize [N] & \footnotesize [V]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `He/she has watermelon.'
+
+\vspace{0.25cm}\noindent \textbf{Example 8}
+\begin{table*}[h!]
+\begin{tabular}{c | c |c}
+\includegraphics[height=2.75cm]{pineapple.jpg}&\includegraphics[height=2.75cm]{eat.jpg}&\includegraphics[height=2.75cm]{how.jpg}\\
+\footnotesize Subject& \footnotesize Object & \footnotesize Predicate\\
+\footnotesize [N] & \footnotesize [V] & \footnotesize [QW]\\
+\end{tabular}
+\end{table*}
+\begin{fullwidth}
+(Subject `you' is deleted. Predicate `eat' indicates unspecified object/manner.)
+
+Best English Translation: `How are pineapples eaten?'
+\end{fullwidth}
+\newpage
+\noindent \textbf{Example 9}
+\begin{table*}[h!]
+\begin{tabular}{c | c }
+\includegraphics[height=2.75cm]{pineapple.jpg}&\includegraphics[height=2.75cm]{eatpineapple.jpg}\\
+\footnotesize Object &  \footnotesize Predicate\\
+ \footnotesize [N] & \footnotesize [V]\\
+\end{tabular}
+\end{table*}
+\begin{fullwidth}
+(Subject `you' is deleted. Predicate `eat' indicates specified object/manner.)
+
+Best English Translation: `Pineapples are eaten in this way.'
+\end{fullwidth}
+
+\vspace{0.25cm}\noindent \textbf{Example 10}
+\begin{table*}[h!]
+\begin{tabular}{c | c |c}
+\includegraphics[height=2.75cm]{grape.jpg}&\includegraphics[height=2.75cm]{eat.jpg}&\includegraphics[height=2.75cm]{how.jpg}\\
+\footnotesize Object & \footnotesize Predicate & \footnotesize Manner ?\\
+\footnotesize [N] & \footnotesize [V] & \footnotesize [QW]\\
+\end{tabular}
+\end{table*}
+\begin{fullwidth}
+(Subject `you' is deleted. Predicate `eat' has unspecified object/manner.)
+
+Best English Translation: `How are grapes eaten?'
+\end{fullwidth}
+
+\vspace{0.25cm}\noindent \textbf{Example 11}
+\begin{table*}[h!]
+\begin{tabular}{c | c }
+\includegraphics[height=2.75cm]{grape.jpg}&\includegraphics[height=2.75cm]{eatgrape.jpg}\\
+\footnotesize Object & \footnotesize Predicate \\
+\footnotesize [N] & \footnotesize [V] \\
+\end{tabular}
+\end{table*}
+\begin{fullwidth}
+(Subject `you' is deleted. Predicate `eat' has unspecified object/manner.)
+
+Best English Translation: `Grapes are eaten in this way.'
+\end{fullwidth}
+\newpage
+\noindent \textbf{Example 12}
+\begin{table*}[h!]
+\begin{tabular}{c  c |c}
+\includegraphics[height=2.75cm]{watermelon.jpg}&\includegraphics[height=2.75cm]{banana.jpg}&\includegraphics[height=2.75cm]{eat.jpg}\\
+\footnotesize Object & & \footnotesize Predicate  \\
+\footnotesize [N & \footnotesize N] & \footnotesize [V]\\
+\includegraphics[height=2.75cm]{same2.jpg}&\includegraphics[height=2.75cm]{different.jpg}&\\
+\footnotesize Manner ? &  & \\
+\footnotesize [AV & \footnotesize AV] & \\
+\end{tabular}
+\end{table*}
+\begin{fullwidth}
+(Subject `you' is deleted.)
+
+Best English Translation: `Are watermelon and bananas eaten in the same way or a different way?'
+\end{fullwidth}
+
+\vspace{0.25cm}\noindent \textbf{Example 13}
+\begin{table*}[h!]
+\begin{tabular}{c c| c | c}
+\includegraphics[height=2.75cm]{watermelon.jpg}&\includegraphics[height=2.75cm]{banana.jpg}&\includegraphics[height=2.75cm]{eat.jpg}&\includegraphics[height=2.75cm]{different.jpg}\\
+\footnotesize Object & &  \footnotesize Predicate & \footnotesize Manner\\
+\footnotesize [N & \footnotesize N] & \footnotesize [V]& \footnotesize [AV]\\
+\end{tabular}
+\end{table*}
+
+\begin{fullwidth}
+(Subject `you' is deleted.)
+
+Best English Translation: `Watermelon and bananas are eaten differently.'
+\end{fullwidth}
+\newpage
+\subsection{Homework}\index{homework}
+\begin{enumerate}
+\item Look at the picture below and give the sign for each fruit you see.
+ \begin{table*}[h!]
+\begin{tabular}{c }
+\includegraphics[height=5cm]{fruits.jpg}
+\end{tabular}
+\end{table*}
+\item Look at the picture above again and describe the color of each fruit in a complete sentence. Make sure you use the grammar of HSL as you have learned it in class.
+\item Match the sign for the fruit with the picture of the fruit.
+ \begin{table*}[h!]
+\begin{tabular}{c c c c cccl}
+\includegraphics[height=2cm]{grapefruit1.jpg} & &&& &&&\includegraphics[height=2cm]{pineapple.jpg}\\
+\includegraphics[height=2cm]{grapes1.jpg} & &&& &&&\includegraphics[height=2.0cm]{grape.jpg}\\
+\includegraphics[height=2cm]{pineapple2.jpg} & &&& &&&\includegraphics[height=2cm]{mango.jpg}\\
+\includegraphics[height=2cm]{orange1.jpg} & &&& &&&\includegraphics[height=2cm]{grapefruit.jpg}\\
+\includegraphics[height=2cm]{mango1.jpg} & &&& &&&\includegraphics[height=2cm]{orangefruit.jpg}\\
+\end{tabular}
+\end{table*}
+\newpage
+\item Look at the pictures below. If the sign next to the fruit is the correct sign for `eat' for this fruit, write the word `correct' in the space provided. If the sign is the incorrect sign for `eat' for this fruit, write the word `incorrect'.
+
+ \begin{table*}[h!]
+\begin{tabular}{c c}
+\includegraphics[height=2.5cm]{mango1.jpg} & \includegraphics[height=2.5cm]{eat.jpg}\\
+\includegraphics[height=2.5cm]{orange1.jpg} & \includegraphics[height=2.5cm]{eatorange.jpg}\\
+\includegraphics[height=2.5cm]{grapes1.jpg} & \includegraphics[height=2.5cm]{eatpineapple.jpg}\\
+
+
+\end{tabular}
+\end{table*}
+\item Put the signs in each of the five sentences below in the correct grammatical order for HSL by writing the number `1' under the first correct sign, `2' under the second correct sign, etc.
+
+ \begin{table*}[h!]
+\begin{tabular}{c c c}
+\includegraphics[height=2.5cm]{mango.jpg} & \includegraphics[height=2.5cm]{eat.jpg}&
+\includegraphics[height=2.5cm]{how.jpg}\\
+& & \\
+\includegraphics[height=2.5cm]{orangefruit.jpg} & \includegraphics[height=2.5cm]{like.jpg}&
+\includegraphics[height=2.5cm]{name1.jpg}\\
+\end{tabular}
+\end{table*}
+
+ \begin{table*}[h!]
+\begin{tabular}{c c c c}
+\includegraphics[height=2.5cm]{me.jpg} & \includegraphics[height=2.5cm]{five.jpg}&
+\includegraphics[height=2.5cm]{ihave.jpg}&
+\includegraphics[height=2.5cm]{grape.jpg}\\
+\end{tabular}
+\end{table*}
+\newpage
+
+ \begin{table*}[h!]
+\begin{tabular}{c c c}
+\includegraphics[height=2.5cm]{she.jpg} & \includegraphics[height=2.5cm]{dislike.jpg}&
+\includegraphics[height=2.5cm]{banana.jpg}\\
+\end{tabular}
+\end{table*}
+
+ \begin{table*}[h!]
+\begin{tabular}{c c c c}
+\includegraphics[height=2.5cm]{pineapple.jpg} & \includegraphics[height=2.5cm]{mango.jpg}&
+\includegraphics[height=2.5cm]{different.jpg}&
+\includegraphics[height=2.5cm]{eat.jpg}\\
+\end{tabular}
+\end{table*}
+
+\vspace{3cm}
+\subsection{Additional Linguistic and Cultural Information}\index{Hawai`i Sign Language!cultural information}
+
+Note that the signs for `orange (color)' and `orange (fruit)' are different signs.
+Note that there are a number of different signs for eating included in this lesson. There are, in fact, other signs for eating that you have not learned yet. Make sure that you use the correct form of eating for the objects you are discussing. In questions where the object is not known, it is almost always possible to use the sign for `eat-(unspecified object)'.\index{eating} However, in statements where the object eaten is known, you have to choose the correct sign for `eat'.\index{colors}
+
+
+
+
+
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%
+
+\chapter{Lesson 5 Friends and Relationships}\index{family}\index{relationships}
+\section{Section 1 Read before class}
+
+\newthought{This lesson is divided} into two parts. The first part deals with the identification of people and relationships with people and the second part with how to use Hawai`i Sign Language (HSL) to describe some basic physical and emotional characteristics of people.
+
+In the first part of the lesson related to identification of people and relationships with people, you will learn basic vocabulary items related to the topic as well as dual\index{pronoun!dual} and possessive\index{pronoun!possessive} forms of pronouns signs, and some signs to indicate aspect and negation. In addition, you will learn to ask and answer questions related to which people have relationships and to identify the nature of the relationship.
+
+In the second part of the lesson related to how to use HSL to describe some basic physical and emotional characteristics of people, you will learn 11 new adjectives and how to use them in conversations related to descriptions of people.
+
+At this point, you should stop reading until after you have attended class. After class, you should use Section 2 for review and further practice.
+
+\newpage
+\section{Section 2 For Review after Class}
+\subsection{Identifying People and Relationships}\index{relationships}
+
+\noindent A.~Vocabulary Already Presented During Class\index{vocabulary}
+
+\vspace{0.25cm}\noindent Nouns\index{noun}
+
+\begin{table*}[h!]
+\begin{tabular}{c c c}
+\includegraphics[height=2.75cm]{boy.jpg}&\includegraphics[height=2.75cm]{girl.jpg}&\includegraphics[height=2.75cm]{mahu.jpg}\\
+\footnotesize man, boy & \footnotesize woman, girl & \footnotesize mahu\\
+\includegraphics[height=2.75cm]{friend.jpg}&\includegraphics[height=2.75cm]{closefriend.jpg}&\\
+\footnotesize friend & \footnotesize close-friend &\\
+
+\end{tabular}
+\end{table*}
+
+\vspace{0.25cm}\noindent Adjectives\index{adjective}
+
+\begin{table*}[h!]
+\begin{tabular}{c c}
+\includegraphics[height=2.75cm]{old.jpg}&\includegraphics[height=2.75cm]{young.jpg}\\
+\footnotesize old (person) & \footnotesize young (person) \\
+\end{tabular}
+\end{table*}
+
+\vspace{0.25cm}\noindent Verbs\index{verb}
+
+\begin{table*}[h!]
+\begin{tabular}{c c c}
+\includegraphics[height=2.75cm]{loveromantically.jpg}&\includegraphics[height=2.75cm]{love1.jpg}&\includegraphics[height=2.75cm]{meet.jpg}\\
+\footnotesize love (romantically) & \footnotesize love (non-romantically) & \footnotesize meet\\
+
+\end{tabular}
+\end{table*}
+
+\newpage
+
+\noindent Pronouns\index{pronoun}
+
+\begin{table*}[h!]
+\begin{tabular}{c c c}
+\includegraphics[height=2.75cm]{twoofus.jpg}&\includegraphics[height=2.75cm]{twoofyou.pdf}&\includegraphics[height=2.75cm]{twoofthem.jpg}\\
+\footnotesize two-of-us, we-two & \footnotesize two-of-you, you-two & \footnotesize two-of-them\\
+\includegraphics[height=2.75cm]{my.jpg}&\includegraphics[height=2.75cm]{your.jpg}&\includegraphics[height=2.75cm]{hers.jpg}\\
+\footnotesize my, mine & \footnotesize your, yours & \footnotesize his, her, hers\\
+
+\end{tabular}
+\end{table*}\index{pronoun!dual}\index{pronoun!possessive}
+
+\vspace{0.25cm}\noindent Aspect and Negative Indicators\index{aspect}\index{negation}
+
+\begin{table*}[h!]
+\begin{tabular}{c c}
+\includegraphics[height=2.75cm]{already.jpg}&\includegraphics[height=2.75cm]{notyet.jpg}\\
+\footnotesize already (completed) & \footnotesize not-yet \\
+\end{tabular}
+\end{table*}
+\newpage
+
+\noindent B.~Grammatical Examples and Patterns Already Presented During Class
+
+\vspace{0.25cm}\noindent \textbf{Example 1}
+\begin{table*}[h!]
+\begin{tabular}{c | c }
+\includegraphics[height=2.75cm]{she.jpg}&\includegraphics[height=2.75cm]{who.jpg}\\
+\footnotesize Subject & \footnotesize Predicate ?\\
+\footnotesize [PRO] & \footnotesize [QW]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `Who is he?'
+
+\vspace{0.25cm}\noindent \textbf{Example 2}
+\begin{table*}[h!]
+\begin{tabular}{c | c c}
+\includegraphics[height=2.75cm]{she.jpg}&\includegraphics[height=2.75cm]{friend.jpg}&\includegraphics[height=2.75cm]{my.jpg}\\
+\footnotesize Subject &  \footnotesize Predicate &\\
+\footnotesize [PRO] & \footnotesize [N & \footnotesize PRO]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `He's my friend.'
+
+\vspace{0.25cm}\noindent \textbf{Example 3}\index{sign!non-manual}
+\begin{table*}[h!]
+\begin{tabular}{c | c| c}
+\includegraphics[height=2.75cm]{you.jpg}&\includegraphics[height=2.75cm]{closefriend.jpg}&\includegraphics[height=2.75cm]{youhave.jpg}\\
+\footnotesize Subject & \footnotesize Object & \footnotesize Predicate\\
+\footnotesize [PRO] & \footnotesize [N] & \footnotesize [V]\\
+\end{tabular}
+\end{table*}
+
+\noindent with Question on face -----------------------------------------------
+
+Best English Translation: `Do you have a close friend?'
+\newpage
+\noindent \textbf{Example 4}
+\begin{table*}[h!]
+\begin{tabular}{c}
+\includegraphics[height=2.75cm]{already.jpg}\\
+\footnotesize [ASP] \\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `Yes, I already have a close friend.'
+
+\vspace{0.25cm}\noindent \textbf{Example 5}
+\begin{table*}[h!]
+\begin{tabular}{c  c| c c}
+\includegraphics[height=2.75cm]{closefriend.jpg}&\includegraphics[height=2.75cm]{your.jpg}&\includegraphics[height=2.75cm]{boy.jpg}&\includegraphics[height=2.75cm]{girl.jpg}\\
+\footnotesize Subject &  & \footnotesize Predicate & \footnotesize ?\\
+\footnotesize [N & \footnotesize PRO] & \footnotesize [N & \footnotesize N]\\
+\end{tabular}
+\end{table*}
+
+\hspace{5.5cm} with Question on face ---------
+
+Best English Translation: `Is your close friend a man or a woman?'
+
+\vspace{0.25cm}\noindent \textbf{Example 6}\index{sign!non-manual}
+\begin{table*}[h!]
+\begin{tabular}{c | c}
+\includegraphics[height=2.75cm]{twoofthem.jpg}&\includegraphics[height=2.75cm]{closefriend.jpg}\\
+\footnotesize Subject & \footnotesize Predicate\\
+\footnotesize [PRO] & \footnotesize [N] \\
+\end{tabular}
+\end{table*}
+
+\noindent with Question on face ----------------------
+
+Best English Translation: `Are the two of them close friends?'
+
+\newpage
+
+\noindent \textbf{Example 7}
+\begin{table*}[h!]
+\begin{tabular}{c}
+\includegraphics[height=2.75cm]{notyet.jpg}\\
+\footnotesize [NEG] \\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `No, the two of them are not close friends.'
+
+\vspace{0.25cm}\noindent \textbf{Example 8}\index{sign!non-manual}
+\begin{table*}[h!]
+\begin{tabular}{c | c}
+\includegraphics[height=2.75cm]{twoofthem.jpg}&\includegraphics[height=2.75cm]{friend.jpg}\\
+\footnotesize Subject & \footnotesize Predicate\\
+\footnotesize [PRO] & \footnotesize [N] \\
+\end{tabular}
+\end{table*}
+
+\noindent with Question on face ----------------------
+
+Best English Translation: `Are the two of them friends?'
+
+\vspace{0.25cm}\noindent \textbf{Example 9}
+\begin{table*}[h!]
+\begin{tabular}{c | c | c}
+\includegraphics[height=2.75cm]{she.jpg}&\includegraphics[height=2.75cm]{name1.jpg}&\includegraphics[height=2.75cm]{loveromantically.jpg}\\
+\footnotesize Subject & \footnotesize Object &  \footnotesize Predicate\\
+\footnotesize [PRO] & \footnotesize [N] & \footnotesize [V]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `She (romantically) loves xxxxx.'
+\newpage
+\subsection{Adjectives for Describing People}
+
+\noindent A.~Vocabulary Already Presented During Class\index{vocabulary}
+
+\vspace{0.25cm} \noindent Adjectives\index{adjective}
+
+\begin{table*}[h!]
+\begin{tabular}{c c c }
+\includegraphics[height=2.75cm]{tall.jpg}&\includegraphics[height=2.75cm]{short.jpg}&\includegraphics[height=2.75cm]{fat.jpg}\\
+\footnotesize tall (person) & \footnotesize short (person) & \footnotesize fat\\
+\includegraphics[height=2.75cm]{thin.jpg}&\includegraphics[height=2.75cm]{easygoing.jpg}&\includegraphics[height=2.75cm]{hottempered.jpg}\\
+\footnotesize thin (person) & \footnotesize easy-going & \footnotesize hot-tempered\\
+\includegraphics[height=2.75cm]{strong.jpg}&\includegraphics[height=2.75cm]{weak.jpg}&\includegraphics[height=2.75cm]{beautiful.jpg}\\
+\footnotesize strong & \footnotesize weak & \footnotesize beautiful (person)\\
+\multicolumn{2}{c}{\includegraphics[height=2.75cm]{ugly.jpg}}&\includegraphics[height=2.75cm]{cute.jpg}\\
+\multicolumn{2}{c}{\footnotesize ugly (person)} & \footnotesize cute\\
+
+\end{tabular}
+\end{table*}
+\newpage
+\noindent B.~Grammatical Examples and Patterns Already Presented During Class
+
+\vspace{0.25cm}\noindent \textbf{Example 10}
+\begin{table*}[h!]
+\begin{tabular}{c  c| c}
+\includegraphics[height=2.75cm]{friend.jpg}&\includegraphics[height=2.75cm]{your.jpg}&\includegraphics[height=2.75cm]{where.jpg}\\
+\footnotesize Subject & & \footnotesize Predicate\\
+\footnotesize [N & \footnotesize PRO] & \footnotesize [QW]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `Where is your friend?'
+
+\vspace{0.25cm}\noindent \textbf{Example 11}
+\begin{table*}[h!]
+\begin{tabular}{c  c| c c}
+\includegraphics[height=2.75cm]{friend.jpg}&\includegraphics[height=2.75cm]{my.jpg}&\includegraphics[height=2.75cm]{tall.jpg}&\includegraphics[height=2.75cm]{thin.jpg}\\
+\footnotesize Subject & & \footnotesize Predicate &\\
+\footnotesize [N & \footnotesize PRO] & \footnotesize [AJ & \footnotesize AJ]\\
+\end{tabular}
+\end{table*}
+
+Best English Translation: `My friend is tall and thin.'
+
+\vspace{0.25cm}\noindent \textbf{Example 12}\index{sign!non-manual}
+\begin{table*}[h!]
+\begin{tabular}{c  c| c}
+\includegraphics[height=2.75cm]{friend.jpg}&\includegraphics[height=2.75cm]{your.jpg}&\includegraphics[height=2.75cm]{cute.jpg}\\
+\footnotesize Subject & & \footnotesize Predicate ?\\
+\footnotesize [N & \footnotesize PRO] & \footnotesize [AJ]\\
+\end{tabular}
+\end{table*}
+
+\hspace{5.5cm} with Question on face
+
+Best English Translation: `Is your friend cute?'
+
+\newpage
+\noindent \textbf{Example 13}
+\begin{table*}[h!]
+\begin{tabular}{c|  c c}
+\includegraphics[height=2.75cm]{me.jpg}&\includegraphics[height=2.75cm]{boy.jpg}&\includegraphics[height=2.75cm]{tall.jpg}\\
+\footnotesize Subject &  \footnotesize Object & \\
+\footnotesize [N & \footnotesize [N & \footnotesize AJ\\
+
+\end{tabular}
+\end{table*}
+\begin{table*}[h!]
+\begin{tabular}{c  c |c}
+\includegraphics[height=2.75cm]{tall.jpg}&\includegraphics[height=2.75cm]{strong.jpg}&\includegraphics[height=2.75cm]{easygoing.jpg}\\
+  & & \footnotesize Predicate \\
+\footnotesize AJ & \footnotesize AJ] & \footnotesize [V]\\
+
+\end{tabular}
+\end{table*}
+
+\begin{fullwidth}
+
+Best English Translation: `I like men who are tall, strong, and easy-going.'
+\end{fullwidth}
+
+\subsection{Homework}\index{homework}
+\begin{enumerate}
+\item Tell the following story in HSL. Make sure you use the
+grammar as you have been taught in class.
+
+XXXXX is a man. YYYYY is a woman. They met today and now they love each
+other.
+
+\item Tell the following story in HSL. Make sure you use the
+grammar as you have been taught in class.
+
+XXXXX loves YYYYY. YYYYY loves ZZZZZ. ZZZZZ loves YYYYY. YYYYY and
+ZZZZZ are close friends. XXXXX and YYYYY are only friends.
+\item Look at the following sentences and write the English translations.
+\begin{table*}[h!]
+\begin{tabular}{c c c }
+\includegraphics[height=2.75cm]{she.jpg}&\includegraphics[height=2.75cm]{closefriend.jpg}&\includegraphics[height=2.75cm]{my.jpg}\\
+\end{tabular}
+\end{table*}
+\newpage
+\begin{table*}[h!]
+\begin{tabular}{c c c }
+\includegraphics[height=2.75cm]{twoofus.jpg}&\includegraphics[height=2.75cm]{closefriend.jpg}&\includegraphics[height=2.75cm]{already.jpg}\\
+& &\\
+& &\\
+\includegraphics[height=2.75cm]{twoofthem.jpg}&\includegraphics[height=2.75cm]{closefriend.jpg}&\includegraphics[height=2.75cm]{notyet.jpg}\\
+\end{tabular}
+\end{table*}
+\vspace{2cm}
+\item Give the opposite sign of the signs below.
+\begin{table*}[h!]
+\begin{tabular}{c c c c c}
+\includegraphics[height=2.75cm]{tall.jpg}&\includegraphics[height=2.75cm]{fat.jpg}&\includegraphics[height=2.75cm]{easygoing.jpg} &\includegraphics[height=2.75cm]{strong.jpg}&\includegraphics[height=2.75cm]{beautiful.jpg}\\
+
+\end{tabular}
+\end{table*}
+
+\begin{table*}[h!]
+\begin{tabular}{c c}
+\includegraphics[height=7cm]{man2.jpg}&\includegraphics[height=7cm]{woman2.jpg}\\
+\footnotesize Picture 1 & \footnotesize Picture 2\\
+\end{tabular}
+\end{table*}
+\newpage
+\item Read the sign description of Picture 1 and find the wrong sign(s).
+\begin{table*}[h!]
+\begin{tabular}{c c c c c}
+\includegraphics[height=2.75cm]{she.jpg}&\includegraphics[height=2.75cm]{short.jpg}&\includegraphics[height=2.75cm]{fat.jpg} &\includegraphics[height=2.75cm]{weak.jpg}&\includegraphics[height=2.75cm]{hottempered.jpg}\\
+
+\end{tabular}
+\end{table*}
+\item Use Hawai`i Sign Language to describe the person in Picture 2.
+
+\end{enumerate}
+\newpage
+
+\subsection{Additional Linguistic and Cultural Information}\index{Hawai`i Sign Language!cultural information}\index{relationships}
+
+The signs for `love-romantically' and `love-non-romantically' differ only in non-manual expression. Watch your teacher’s facial expression for these signs carefully.
+
+The normal word order\index{Hawai`i Sign Language!word order} in Hawai`i Sign Language for negatives\index{negation} is at the end of the sentence. When the negative is used as an exclamation as in `no' to answer a question, but not to negate the verb in the same sentence, the sign occurs at the beginning of a sentence.
+
+Many of the words in this lesson, especially adjectives,\index{adjective} have distinct facial expressions. Watch your teacher’s facial expressions on these signs carefully.\index{sign!non-manual}
+
+%%%%%%%%%%%%%%%%%%
+
+\chapter[Hawai`i Sign Language to English Mini-Dictionary]{Hawai`i Sign Language to English Companion \\Dictionary to Handbook 1}\index{dictionary!HSL to English Dictionary}
+
+\begin{fullwidth}
+
+\newthought{All sign languages}, just like all spoken languages, can be written down. Since spoken languages are conveyed by using sounds, most writing systems for writing spoken languages have some symbols for representing sounds in the way they are spoken. Sign languages, of course, do not have sounds, but they do have consistently reoccurring parameters. There are 5 important parameters in the production of signs in all sign languages: 1) the handshapes\index{sign!handshape} used in making signs, 2) the specific orientation of these handshapes, 3) the locations where the signs are made, 4) the movements used in making signs, and 5) non-manual expressions using in the production of signs.
+This glossary organizes the signs you have learned primarily by using the first three parameters mentioned above: handshapes. If you want to use this glossary to find a sign you have learned, you must first know if the sign uses one handshape or two handshapes in the production of the sign. Signs using no handshape (completely non-manual signs) and one handshape occur in the first section of this glossary from page~\pageref{page:beginonehand} to page~\pageref{page:endonehand}. Signs using two handshapes occur in the second section of this glossary from page~\pageref{page:begintwohand} to~\pageref{page:endtwohand}.
+
+Signs using one handshape are organized by three criteria:
+\begin{quote}
+\begin{enumerate}
+\item HANDSHAPE
+\item ORIENTATION
+\item LOCATION
+\end{enumerate}
+\end{quote}
+
+HANDSHAPES have been organized according to six hierarchical criteria:
+\begin{quote}
+\begin{enumerate}
+\item How many fingers are extended? (0, 1, 2, 3, 4) Handshapes with fewer fingers are listed before handshapes with more fingers extended.
+
+\item Is the thumb extended or not extended? Handshapes within a category determined by criterion 1 that have no thumb extended are listed before handshapes within the same category that do have the thumb extended.
+
+\item Are the extended fingers spread or not spread apart from each other? Handshapes within a category determined by criteria 1 and 2 that do not have spread fingers are listed before handshapes within the same category that have spread fingers. (Handshapes with 0 or 1 finger (even if they have the thumb extended are always not spread.)
+
+\item Are the extended fingers and/or extended thumb bent or not bent? Handshapes within a category determined by criteria 1, 2, and 3 that do not have extended fingers and/or thumb that are not bent are listed before handshapes within the same category that have extended fingers and/or thumb that are bent.
+
+\item Do the extended, bent fingers make direct contact with the tip of the thumb? Handshapes within a category determined by criteria 1, 2, 3, and 4 in which
+extended, bent fingers make no contact with the tip of the thumb are listed before handshapes that do make such contact.
+
+\item Are there any additional factors present in the handshape? Those handshapes within a category determined by criteria 1, 2, 3, 4, and 5 with no additional factors are listed before handshapes in the same category with no additional factors. (For example handshapes in which the fingers are not tapered are listed before handshapes in which the fingers are tapered.)
+\end{enumerate}
+\end{quote}
+
+ORIENTATIONS\index{sign!orientation} are the second parameter for organization. Within each handshape, signs are organized by orientation of the handshape, if the handshape alone is not enough to identify the sign in this dictionary. The orientation of the palm and the orientation of the fingers may both important. In this dictionary, the orientation of the palm is written first followed by the orientation of the fingers (as if all fingers were extended. If the handshape and the orientation of the palm are sufficient to identify a sign in this dictionary, the orientation of the fingers is not included. If there is more than one finger orientation for a given handshape and palm orientation, the finger orientation is included. The order for orientation in this dictionary is:
+\begin{quote}
+\begin{enumerate}
+\item inward ({\sansnormal T}),
+\item upward ($\Lambda$),
+\item facing the non-dominant (left for right-handed) side of the body (>),\index{sign!hand dominance}
+\item outward ($\perp$),
+\item downward ({\sansnormal V}),
+\item facing the dominant side (right for right-handed) side of the body (<).
+\end{enumerate}
+\end{quote}
+
+\noindent Thus, within any one handshape, signs are listed in the following logical order.
+
+\begin{table*}[h!]
+\centering
+\begin{tabular}{|l | l |l | l | l | l|}
+\hline
+& {\sansnormal T}$\Lambda$& {\sansnormal T}> & & {\sansnormal TV} & {\sansnormal T}<\\
+\hline
+& 1 & 2 & &3 &4\\\hline
+$\Lambda${\sansnormal T} & & $\Lambda$> & $\Lambda\perp$ & &$\Lambda$<\\
+\hline
+5& & 6 & 7 & &8\\\hline
+>{\sansnormal T} &>$\Lambda$ & &>$\perp$&>{\sansnormal V} &\\\hline
+9&10&&11&12&\\\hline
+& $\perp\Lambda$ &$\perp$> & &$\perp${\sansnormal V} &$\perp$<\\\hline
+& 13 & 14 & &15 &16\\\hline
+{\sansnormal VT} & & {\sansnormal V}> & {\sansnormal V}$\perp$&<{\sansnormal V} & \\\hline
+17 & & 18&19& & 20\\\hline
+<{\sansnormal T} &<$\Lambda$& &<$\perp$&<{\sansnormal V} &\\\hline
+21&22&&23&24&\\\hline
+\end{tabular}
+\end{table*}
+
+\noindent (Some of these orientations are physically impossible to produce, so they are not included in the chart. Occasionally an orientation will be in between two of these orientations and will be represented as “/”.)
+
+\vspace{0.25cm}LOCATIONS\index{sign!location} are the third parameter for organization. Within each identified orientation of each handshape,\index{sign!handshape} signs are organized by location of the sign. The order for location is:
+\begin{quote}
+\begin{enumerate}
+\item at or near the top of the head,
+\item the whole face,
+\item at, near, or in front of the upper part of the face,
+\item at, near, or in front of the middle part of the face,
+\item at, near, or in front of the lower part of the face,
+\item at, near, or in front of the neck,
+\item at, near, or in front of the upper part of the trunk or arm,
+\item at, near, or in front of the middle part of the trunk or arm,
+\item at, near, or in front of the lower part of the trunk or arm.
+\end{enumerate}
+\end{quote}
+
+No special symbols are used in this dictionary for location, since there is rarely more than three signs (one line of pictures) where difference in location is important. A quick visual scan is sufficient to locate differences in location.
+
+Signs with two handshapes are organized by:
+\begin{quote}
+\begin{enumerate}
+\item the handshape of the dominant hand,\index{sign!hand dominance}
+\item the handshape of the non-dominant hand,
+\item the orientation of the palm of the dominant hand, if relevant,
+\item the orientation of the fingers of the dominant hand, if relevant.
+\item the orientation of the palm of the non-dominant hand,
+\item the orientation of the palm of the non-dominant hand, if relevant
+\item the location of the sign.
+\end{enumerate}
+\end{quote}
+
+If you want to look up a one-handed sign, go to the next page for the chart of handshapes for the signs in this dictionary and find the handshape of the sign. Above the handshape you will find the page number where signs with this handshape are listed. Go to the page number and look for the sign by its orientation and location.
+
+If you want to look up a two-handed sign go to page~\pageref{page:twohandinfo} for more information.
+
+
+\end{fullwidth}
+\newpage
+\begin{fullwidth}
+\begin{center}
+
+{\large \textbf{HOW TO FIND ONE-HANDED SIGNS}}\index{sign!one-handed sign}
+\end{center}
+
+\begin{table}[h!]
+%\begin{sideways}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+\footnotesize Fingers &\footnotesize -Thumb &\footnotesize -Thumb &\footnotesize xThumb&\footnotesize xThumb&\footnotesize+Thumb&\footnotesize +Thumb&\footnotesize +Thumb&  \footnotesize +Thumb  \\
+& &\footnotesize +Bent  &&\footnotesize +Bent&&\footnotesize +Bent&\footnotesize +Bent&  \footnotesize +Bent\\
+ & & &&&&\footnotesize +Round&\footnotesize +Round&  \footnotesize +Round  \\
+ & & &&\footnotesize +Taper&&&&  \footnotesize +Taper \\
+&&&&&&&\footnotesize +Contact&  \footnotesize +Contact  \\
+
+\hline
+\footnotesize 0 &\footnotesize \pageref{page:65}&&&&&&&   \\
+& \includegraphics[height=1cm]{65.jpg}&&&&&&& \\ \hline
+\footnotesize 1 & \footnotesize \pageref{page:index1nothumb} & \footnotesize\pageref{page:67}&&&&&&\footnotesize\pageref{page:68} \\
+\footnotesize Index & \multirow{3}{*}{\includegraphics[height=1cm]{651.jpg}} & \multirow{3}{*}{\includegraphics[height=1cm]{67.jpg}}&&&&&&\multirow{3}{*}{\includegraphics[height=1cm]{68.jpg}} \\ 
+& & & & & & & &\\
+& & & & & & & &\\\hline
+\footnotesize 2 & \footnotesize \pageref{page:681} & & & & & & &\\
+\footnotesize Index & \multirow{3}{*}{\includegraphics[height=1cm]{681.jpg}}& & & & & & &\\
+\footnotesize Mid& & & & & & & &\\
+& & & & & & & &\\\hline
+\footnotesize 3 & \footnotesize \pageref{page:682} & & & & & & &\\
+\footnotesize Index& \multirow{3}{*}{\includegraphics[height=1cm]{682.jpg}} & & & & & & &\\
+\footnotesize Mid& & & & & & & &\\
+\footnotesize Spread& & & & & & & &\\\hline
+\footnotesize 3 & \footnotesize \pageref{page:69} & & & & & & &\\
+\footnotesize Index& \multirow{3}{*}{\includegraphics[height=1cm]{69.jpg}} & & & & & & &\\
+\footnotesize Mid& & & & & & & &\\
+\footnotesize Ring& & & & & & & &\\\hline
+\footnotesize 3& & & & & & & \footnotesize \pageref{page:691}&\footnotesize \pageref{page:692}\\
+\footnotesize Mid& & & & & & &  \multirow{3}{*}{\includegraphics[height=1cm]{691.jpg}}& \multirow{3}{*}{\includegraphics[height=1cm]{692.jpg}}\\
+
+\footnotesize Ring& & & & & & & &\\\
+\footnotesize Little& & & & & & & &\\\hline
+\footnotesize 4& & & \footnotesize \pageref{page:70}&\footnotesize \pageref{page:71} &\footnotesize \pageref{page:711} & & &\footnotesize \pageref{page:72}\\
+& & & \multirow{3}{*}{\includegraphics[height=1cm]{70.jpg}}&\multirow{3}{*}{\includegraphics[height=1cm]{71.jpg}}&\multirow{3}{*}{\includegraphics[height=1cm]{711.jpg}}& & &\multirow{3}{*}{\includegraphics[height=1cm]{72.jpg}}\\
+& & & & & & & &\\\
+& & & & & & & &\\\hline
+\footnotesize 4&  \footnotesize \pageref{page:721}& & & & \footnotesize \pageref{page:722} &  \footnotesize \pageref{page:73}& &\\\
+\footnotesize Spread &  \multirow{3}{*}{\includegraphics[height=1cm]{721.jpg}}& & & &  \multirow{3}{*}{\includegraphics[height=1cm]{722.jpg}} &  \multirow{3}{*}{\includegraphics[height=1cm]{73.jpg}}& &\\\
+& & & & & & & &\\\
+& & & & & & & &\\\hline
+\end{tabular}
+\end{center}
+%\end{sideways}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{One-Handed Signs}\index{sign!one-handed sign}
+\label{page:beginonehand}%%%put at begin of one hand
+\begin{table}[h!]
+\begin{tabular}{c}
+%\hline
+\includegraphics[height=3cm]{havehave.jpg}\\
+ have (V, L 2)\\
+% \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\begin{tabular}{|c|}
+\hline
+\includegraphics[height=1cm]{65.jpg}\\
+ 
+ \hline
+\end{tabular}
+\label{page:65}
+\end{table}
+
+\begin{table}[h!]
+\begin{tabular}{c}
+%\hline
+\includegraphics[height=3cm]{strong.jpg}\\
+ strong (AJ, L 5)\\
+% \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\begin{tabular}{|c|}
+\hline
+\includegraphics[height=1cm]{651.jpg}\\
+ 
+ \hline
+\end{tabular}
+\label{page:index1nothumb}
+\end{table}
+
+
+\begin{table*}[h!]\index{sign!one-handed sign}
+\begin{tabular}{ccc}
+\multicolumn{3}{l}{\textbf{{\sansnormal T}$\mathbf\Lambda$}}\\
+%\hline
+\includegraphics[height=3cm]{first.jpg}& \includegraphics[height=3cm]{silver.jpg}&\includegraphics[height=3cm]{silver2.jpg}\\
+ first (NUM, L 3) & silver (color), (1) (AJ, L 3) & silver (color), (2) (AJ, L 3)\\
+% \hline
+\end{tabular}
+\end{table*}
+\newpage
+\begin{table*}[h!]\index{sign!one-handed sign}
+\begin{tabular}{ccc}
+\multicolumn{1}{l}{\textbf{{\sansnormal T}>}}&\multicolumn{2}{l}{\textbf{{\sansnormal TV}}}\\
+%\hline
+\includegraphics[height=3cm]{left.jpg}& \includegraphics[height=3cm]{down.jpg}&\includegraphics[height=3cm]{today.jpg}\\
+ to-the-left (AV, L 1) & down (AV, L 1) & today (N, L 2)\\
+% \hline
+ \multicolumn{1}{l}{}&\multicolumn{1}{l}{\textbf{>}$\mathbf\Lambda$} & \multicolumn{1}{l}{\textbf{>}$\pmb\perp$}\\%\hline
+ \includegraphics[height=3cm]{purple.jpg}& \includegraphics[height=3cm]{up.jpg}&\includegraphics[height=3cm]{youhave.jpg}\\
+ purple (AJ, L 3) & up (AV, L 1) & you-have (V, L2)\\%\hline
+ \multicolumn{3}{l}{}\\%\hline
+  \includegraphics[height=3cm]{you.jpg}& \includegraphics[height=3cm]{your.jpg}&\includegraphics[height=3cm]{twoofyou.pdf}\\
+  you (singular) (PRO, L 1) & your, yours (PRO, L 5) & two-of-you, you-two (PRO, L5)\\%\hline
+  \multicolumn{1}{l}{}&\multicolumn{1}{l}{$\pmb\perp\mathbf\Lambda$} & \multicolumn{1}{l}{$\pmb\perp$\textbf{<}}\\%\hline
+   \includegraphics[height=3cm]{twoofus.jpg}& \includegraphics[height=3cm]{one.jpg}&\includegraphics[height=3cm]{she.jpg}\\
+   two-of-us, we-two (PRO, L 5) & one (NUM, L 2) & he, him, she, her (obj), it (PRO, L 5)\\%\hline
+    \multicolumn{3}{l}{}\\
+    %\cline{1-2}
+    &&\\
+    
+    \includegraphics[height=3cm]{hehas.jpg}& \includegraphics[height=3cm]{right.jpg}&\includegraphics[height=3cm]{hers.jpg}\\
+     he/she-has (V, L 2)& to-the-right (AV, L 1)& his, her (pos), hers, its (PRO, L 5)\\
+     \end{tabular}
+\end{table*}
+ \newpage
+ \begin{table*}[h!]\index{sign!one-handed sign}
+\begin{tabular}{ccc}
+&  &\multicolumn{1}{l}{\textbf{<}}\\
+   \includegraphics[height=3cm]{twoofthem.jpg}& \includegraphics[height=3cm]{me.jpg}&\includegraphics[height=3cm]{ihave.jpg}\\
+   two-of-them (PRO, L 5) & I, me (PRO, L 1) &I-have (V, L 2)\\%\hline
+    &\multicolumn{1}{l}{\sansnormal \textbf{V}}\\
+   \includegraphics[height=3cm]{my.jpg}& \includegraphics[height=3cm]{daysofweek.jpg}&\\
+   my, mine (PRO, L 5) & day-of-the-week (N, L 2) &\\%\hline
+ 
+ 
+ 
+\end{tabular}
+\end{table*}
+
+\begin{table}[h!]
+\begin{tabular}{|c|}
+\hline
+\includegraphics[height=1cm]{67.jpg}\\
+ 
+ \hline
+\end{tabular}
+\label{page:67}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!one-handed sign}
+\begin{tabular}{cc}
+ \multicolumn{1}{l}{\sansnormal\textbf{T}}&\multicolumn{1}{l}{\textbf{>}} \\
+   \includegraphics[height=2.8cm]{red.jpg}& \includegraphics[height=2.8cm]{ask.jpg}\\
+   red (AJ, L 3) & ask (V, L 1)\\%\hline
+  %\hline
+ 
+ 
+ 
+\end{tabular}
+\end{table*}
+
+\begin{table}[h!]
+\begin{tabular}{|c|}
+\hline
+\includegraphics[height=1cm]{68.jpg}\\
+ 
+ \hline
+\end{tabular}
+\label{page:68}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!one-handed sign}
+\begin{tabular}{cc}
+ \multicolumn{1}{l}{$\pmb\perp$}&\multicolumn{1}{l}{\sansnormal\textbf{V}} \\
+   \includegraphics[height=2.8cm]{name.jpg}& \includegraphics[height=2.8cm]{hair.jpg}\\
+   name (N, L 1) & hair (N, L 3)\\%\hline
+  %\hline
+ 
+ 
+ 
+\end{tabular}
+\end{table*}
+\newpage
+
+
+\begin{table}[h!]\index{sign!one-handed sign}
+\begin{tabular}{|c|}
+\hline
+\includegraphics[height=1cm]{681.jpg}\\
+ 
+ \hline
+\end{tabular}
+\label{page:681}
+\end{table}
+
+ \begin{table*}[h!]
+\begin{tabular}{cc}
+ \multicolumn{1}{l}{}&\multicolumn{1}{l}{} \\
+   \includegraphics[height=2.8cm]{pink.jpg}& \includegraphics[height=2.8cm]{same1.jpg}\\
+   pink (AJ, L 3) & same (1) (AJ, L 4)\\%\hline
+  %\hline
+ 
+ 
+ 
+\end{tabular}
+\end{table*}
+
+\begin{table}[h!]
+\begin{tabular}{|c|}
+\hline
+\includegraphics[height=1cm]{682.jpg}\\
+ 
+ \hline
+\end{tabular}
+\label{page:682}
+\end{table}
+
+ \begin{table*}[h!]
+\begin{tabular}{ccc}
+ \multicolumn{1}{l}{\textbf{\sansnormal T}$\mathbf\Lambda$}&\multicolumn{1}{l}{\textbf{\sansnormal T>}}&  \multicolumn{1}{l}{$\pmb\perp$} \\
+   \includegraphics[height=2.8cm]{second.jpg}& \includegraphics[height=2.8cm]{chopsticks.jpg}&  \includegraphics[height=2.8cm]{two.jpg}\\
+   second (NUM, L 3) & chopsticks (N, L 2)& two (NUM, L 2)\\%\hline
+  %\hline
+ 
+ 
+ 
+\end{tabular}
+\end{table*}
+
+\begin{table}[h!]\index{sign!one-handed sign}
+\begin{tabular}{|c|}
+\hline
+\includegraphics[height=1cm]{69.jpg}\\
+ 
+ \hline
+\end{tabular}
+\label{page:69}
+\end{table}
+
+ \begin{table*}[h!]
+\begin{tabular}{cc}
+ \multicolumn{1}{l}{\textbf{\sansnormal T}}&\multicolumn{1}{l}{$\pmb\perp$} \\
+   \includegraphics[height=2.8cm]{third.jpg}& \includegraphics[height=2.8cm]{three.jpg}\\
+   third (NUM, L 3) & three (NUM, L 3)\\%\hline
+  %\hline
+  
+ 
+ 
+ 
+\end{tabular}
+\end{table*}
+\newpage
+%%%
+\begin{table}[h!]\index{sign!one-handed sign}
+\begin{tabular}{|c|}
+\hline
+\includegraphics[height=1cm]{691.jpg}\\
+ 
+ \hline
+\end{tabular}
+\label{page:691}
+\end{table}
+
+ \begin{table*}[h!]
+\begin{tabular}{cc}
+ \multicolumn{1}{l}{}&\multicolumn{1}{l}{} \\
+   \includegraphics[height=2.8cm]{zero.jpg}& \includegraphics[height=2.8cm]{right1.jpg}\\
+   zero (NUM, L 2) & correct (1), right (correct) (1) (AJ, L 1)\\%\hline
+  %\hline
+  
+ 
+ 
+ 
+\end{tabular}
+\end{table*}%%%%%%%%
+
+\begin{table}[h!]
+\begin{tabular}{|c|}
+\hline
+\includegraphics[height=1cm]{692.jpg}\\
+ 
+ \hline
+\end{tabular}
+\label{page:692}
+\end{table}
+
+ \begin{table*}[h!]
+\begin{tabular}{c}
+   \includegraphics[height=2.8cm]{eatgrape.jpg}\\
+   eat-grape (V, L 4)  \\%\hline
+  %\hline
+  
+ 
+ 
+ 
+\end{tabular}
+\end{table*}
+%%%%%%%%%%%%%%
+\begin{table}[h!]\index{sign!one-handed sign}
+\begin{tabular}{|c|}
+\hline
+\includegraphics[height=1cm]{70.jpg}\\
+ 
+ \hline
+\end{tabular}
+\label{page:70}
+\end{table}
+
+ \begin{table*}[h!]
+\begin{tabular}{ccc}
+ \multicolumn{1}{l}{\textbf{ >}}&\multicolumn{1}{l}{$\pmb\perp$}&  \multicolumn{1}{l}{\textbf{{\sansnormal V}>}} \\
+   \includegraphics[height=3cm]{beautiful.jpg}& \includegraphics[height=3cm]{tomorrow.jpg}&  \includegraphics[height=3cm]{boy.jpg}\\
+   beautiful (AJ, L 5) & tomorrow (N, L 2)& boy, man (N, L 5)\\%\hline
+  %\hline
+  \end{tabular}
+\end{table*}
+\newpage
+
+ \begin{table*}[h!]
+\begin{tabular}{ccc}
+%   \multicolumn{3}{l}{}\\
+     \includegraphics[height=3cm]{girl.jpg}& \includegraphics[height=3cm]{brown.jpg}&  \includegraphics[height=3cm]{wheredistal.jpg}\\
+   girl, woman (N, L 5) & brown (AJ, L 3)& where (distal) (QW, L 1)\\
+\multicolumn{1}{l}{\sansnormal\textbf{VT}}& &\\
+   \includegraphics[height=3cm]{short.jpg}& &\\
+   short (person) (AJ, L 5) & &\\
+ \end{tabular}
+\end{table*}
+
+\begin{table}[h!]
+\begin{tabular}{|c|}
+\hline
+\includegraphics[height=1cm]{71.jpg}\\
+ 
+ \hline
+\end{tabular}
+\label{page:71}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!one-handed sign}
+\begin{tabular}{c}
+ \multicolumn{1}{l}{}\\
+   \includegraphics[height=2.8cm]{tall.jpg}\\
+   tall (person) (AJ, L 5) \\%\hline
+  %\hline
+ 
+ 
+ 
+\end{tabular}
+\end{table*}
+
+
+\begin{table}[h!]
+\begin{tabular}{|c|}
+\hline
+\includegraphics[height=1cm]{711.jpg}\\
+ 
+ \hline
+\end{tabular}
+\label{page:711}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!one-handed sign}
+\begin{tabular}{ccc}
+ \multicolumn{1}{l}{\textbf{\sansnormal T}$\mathbf\Lambda$}&\multicolumn{1}{l}{\textbf{{\sansnormal T}>}}&  \\
+   \includegraphics[height=3cm]{yesterday.jpg}& \includegraphics[height=3cm]{like.jpg}&  \includegraphics[height=3cm]{dislike.jpg}\\
+   yesterday (N, L 2) & like (V, L 3)& dislike, don't-like (V, L 3)\\%\hline
+  %\hline
+  \end{tabular}
+\end{table*}
+\newpage
+
+ \begin{table*}[h!]
+\begin{tabular}{c}
+ \multicolumn{1}{l}{$\pmb\perp$}\\
+   \includegraphics[height=3cm]{hello.png}\\
+   aloha (hello) (EXC, L 1) \\%\hline
+  %\hline
+ 
+ 
+ 
+\end{tabular}
+\end{table*}
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\begin{table}[h!]\index{sign!one-handed sign}
+\begin{tabular}{|c|}
+\hline
+\includegraphics[height=1cm]{72.jpg}\\
+ 
+ \hline
+\end{tabular}
+\label{page:72}
+\end{table}
+
+ \begin{table*}[h!]
+\begin{tabular}{c}
+% \multicolumn{1}{l}{}\\
+   \includegraphics[height=3cm]{eat.jpg}\\
+  eat-(unspecified food) (V, L 4) \\%\hline
+  %\hline
+ 
+ 
+ 
+\end{tabular}
+\end{table*}
+%%%%%%%%%%%
+\begin{table}[h!]
+\begin{tabular}{|c|}
+\hline
+\includegraphics[height=1cm]{721.jpg}\\
+ 
+ \hline
+\end{tabular}
+\label{page:721}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!one-handed sign}
+\begin{tabular}{c}
+% \multicolumn{1}{l}{}\\
+   \includegraphics[height=3cm]{four.jpg}\\
+  four (NUM, L 2) \\%\hline
+  %\hline
+ 
+ 
+ 
+\end{tabular}
+\end{table*}
+%%%%
+\newpage
+\begin{table}[h!]
+\begin{tabular}{|c|}
+\hline
+\includegraphics[height=1cm]{722.jpg}\\
+ 
+ \hline
+\end{tabular}
+\label{page:722}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!one-handed sign}
+\begin{tabular}{cc}
+ \multicolumn{1}{l}{{\sansnormal\textbf{T}}$\mathbf\Lambda$}&\multicolumn{1}{l}{} \\
+   \includegraphics[height=3cm]{black.jpg}& \includegraphics[height=3cm]{longan.jpg}\\
+   black (AJ, L 3) & correct (1), longan (N, L 4)\\%\hline
+  %\hline
+  
+ 
+
+ 
+\end{tabular}
+\end{table*}
+%%%%%%%%
+
+ \begin{table*}[h!]\index{sign!one-handed sign}
+\begin{tabular}{ccc}
+ \multicolumn{1}{l}{$\pmb\perp$}&&\multicolumn{1}{l}{\textbf{{\sansnormal V}>}}  \\
+   \includegraphics[height=3cm]{five.jpg}& \includegraphics[height=3cm]{mahu.jpg}&  \includegraphics[height=3cm]{blue.jpg}\\
+   five (NUM, L 2) & mahu (N, L 5)& blue (1) (AJ, L 3)\\%\hline
+  %\hline
+  \end{tabular}
+\end{table*}
+
+
+\begin{table}[h!]
+\begin{tabular}{|c|}
+\hline
+\includegraphics[height=1cm]{73.jpg}\\
+ 
+ \hline
+\end{tabular}
+\label{page:73}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!one-handed sign}
+\begin{tabular}{ccc}
+ \multicolumn{1}{l}{\textbf{\sansnormal T}$\mathbf\Lambda$}&\multicolumn{1}{l}{\textbf{{\sansnormal T}>}}&  \\
+   \includegraphics[height=3cm]{hottempered.jpg}& \includegraphics[height=3cm]{mango.jpg}&  \includegraphics[height=3cm]{eatmango.jpg}\\
+   hot-tempered (AJ, L 5) &  mango (N, L 4) & eat-mango (V, L 4)\\
+    \multicolumn{1}{l}{$\mathbf\Lambda$}&\multicolumn{1}{l}{$\pmb\perp$}&  \\
+   \includegraphics[height=3cm]{wrong.jpg}& \includegraphics[height=3cm]{weak.jpg}& \\
+   wrong (AJ, L 1) &  weak (AJ, L 5) & \\%\hline
+  %\hline
+  \end{tabular}
+\end{table*}
+
+\newpage \noindent This is the end of the section on one-handed signs.\index{sign!one-handed sign} If you want to look up a two-handed sign,\index{sign!two-handed sign} go to the next page and find the dominant handshape\index{sign!handshape} of the sign on he chart showing the arrangement of two-handed signs in this dictionary. Then find the non-dominant handshape\index{sign!hand dominance} of the sign. In the column next to the non-dominant handshape, you will find the page number where signs with this combination of dominant and non-dominant handshapes are listed. Go to that page number and look for the sign by the orientation\index{sign!orientation} of the dominant handshape, the orientation of the non-dominant handshape and the location of the sign.\index{sign!location}\label{page:endonehand}
+
+ \newpage
+
+
+
+
+%%%%put at end of one hand
+\end{fullwidth}
+\newpage
+\begin{fullwidth}
+
+\label{page:twohandinfo}%%%put at table
+\begin{center}
+
+{\large \textbf{HOW TO FIND TWO-HANDED SIGNS}}\index{sign!two-handed sign}
+\end{center}
+
+\begin{table}[h!]
+\begin{tabular}{!{\vrule width 3pt}l | l| c!{\vrule width 3pt} l | l| c!{\vrule width 3pt} l|l|c!{\vrule width 3pt}}
+\hline
+Dominant & -Dominant & Page \#& Dominant & -Dominant & Page \# & Dominant & -Dominant & Page \#\\
+\hline
+\includegraphics[height=1cm]{75r.jpg} & \includegraphics[height=1cm]{75l.jpg} & \pageref{page:75} & \includegraphics[height=1cm]{773r.jpg} & \includegraphics[height=1cm]{773l.jpg} & \pageref{page:773} & \includegraphics[height=1cm]{80r.jpg} & \includegraphics[height=1cm]{80l.jpg} & \pageref{page:80}\\\hline
+\includegraphics[height=1cm]{751r.jpg} & \includegraphics[height=1cm]{751l.jpg} & \pageref{page:751} & \includegraphics[height=1cm]{78r.jpg} & \includegraphics[height=1cm]{78l.jpg} & \pageref{page:78} & \includegraphics[height=1cm]{81r.jpg} & \includegraphics[height=1cm]{81l.jpg} & \pageref{page:81}\\\hline
+\includegraphics[height=1cm]{76r.jpg} & \includegraphics[height=1cm]{76l.jpg} & \pageref{page:76} & \includegraphics[height=1cm]{781r.jpg} & \includegraphics[height=1cm]{781l.jpg} & \pageref{page:781} & \includegraphics[height=1cm]{82r.jpg} & \includegraphics[height=1cm]{82l.jpg} & \pageref{page:82}\\\hline
+\includegraphics[height=1cm]{761r.jpg} & \includegraphics[height=1cm]{761l.jpg} & \pageref{page:761} & \includegraphics[height=1cm]{782r.jpg} & \includegraphics[height=1cm]{782l.jpg} & \pageref{page:782} & \includegraphics[height=1cm]{821r.jpg} & \includegraphics[height=1cm]{821l.jpg} & \pageref{page:821}\\\hline
+\includegraphics[height=1cm]{762r.jpg} & \includegraphics[height=1cm]{762l.jpg} & \pageref{page:762} & \includegraphics[height=1cm]{79r.jpg} & \includegraphics[height=1cm]{79l.jpg} & \pageref{page:79} & \includegraphics[height=1cm]{83r.jpg} & \includegraphics[height=1cm]{83l.jpg} & \pageref{page:83}\\\hline
+\includegraphics[height=1cm]{77r.jpg} & \includegraphics[height=1cm]{77l.jpg} & \pageref{page:77} & \includegraphics[height=1cm]{791r.jpg} & \includegraphics[height=1cm]{791l.jpg} & \pageref{page:791} & \includegraphics[height=1cm]{84r.jpg} & \includegraphics[height=1cm]{84l.jpg} & \pageref{page:84}\\\hline
+\includegraphics[height=1cm]{771r.jpg} & \includegraphics[height=1cm]{771l.jpg} & \pageref{page:771} & \includegraphics[height=1cm]{792r.jpg} & \includegraphics[height=1cm]{792l.jpg} & \pageref{page:792} & &  & \\\hline
+
+
+\end{tabular}
+\end{table}
+
+
+\newpage
+\section{Two-Handed Signs}\index{sign!two-handed sign}
+\label{page:begintwohand}%%%put at actual start of two hand
+
+\begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{75r.jpg} & \includegraphics[height=1cm]{75l.jpg}\\
+\hline
+\end{tabular}
+\label{page:75}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{ccc}
+ \multicolumn{1}{l}{\textbf{\sansnormal T}$\mathbf\Lambda$}&&\multicolumn{1}{l}{\textbf{{\sansnormal T}>}}  \\
+   \includegraphics[height=3cm]{watermelon.jpg}& \includegraphics[height=3cm]{eatwatermelon.jpg}&  \includegraphics[height=3cm]{banana.jpg}\\
+   watermelon (N, L 4) & eat-watermelon (V, L 4)& banana (N, L 4)\\%\hline
+   \multicolumn{3}{l}{}\\
+     \includegraphics[height=3cm]{green2.jpg}& \includegraphics[height=3cm]{young.jpg}&  \includegraphics[height=3cm]{old.jpg}\\
+   green (2) (AJ, L 3) & young-person (AJ, L 5)& old (person) (AJ, L 5)\\
+  %\hline
+  \end{tabular}
+\end{table*}
+
+\begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{751r.jpg} & \includegraphics[height=1cm]{751l.jpg}\\
+\hline
+\end{tabular}
+\label{page:751}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{ccc}
+ \multicolumn{1}{l}{\textbf{>}}&\multicolumn{1}{l}{$\pmb\perp$}&\multicolumn{1}{l}{\textbf{{\sansnormal V}}}  \\
+   \includegraphics[height=3cm]{meet.jpg}& \includegraphics[height=3cm]{different.jpg}&  \includegraphics[height=3cm]{same2.jpg}\\
+   meet (V, L 5) & different (AJ, L 4)& same (2) (AJ, L 4)\\%\hline
+  
+  %\hline
+  \end{tabular}
+\end{table*}
+
+\newpage
+
+\begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{76r.jpg} & \includegraphics[height=1cm]{76l.jpg}\\
+\hline
+\end{tabular}
+\label{page:76}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{c}
+   \includegraphics[height=3cm]{yellow2.jpg}\\
+    yellow (2) (AJ, L 3)\\%\hline
+  
+  %\hline
+  \end{tabular}
+\end{table*}
+
+\begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{761r.jpg} & \includegraphics[height=1cm]{761l.jpg}\\
+\hline
+\end{tabular}
+\label{page:761}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{c}
+   \includegraphics[height=3cm]{six.jpg}\\
+    six (NUM, L 2)\\%\hline
+  
+  %\hline
+  \end{tabular}
+\end{table*}
+
+\begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{762r.jpg} & \includegraphics[height=1cm]{762l.jpg}\\
+\hline
+\end{tabular}
+\label{page:762}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{c}
+   \includegraphics[height=3cm]{flatstick.jpg}\\
+    stick (flat) (N, L 2)\\%\hline
+  
+  %\hline
+  \end{tabular}
+\end{table*}
+
+\newpage
+
+\begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{77r.jpg} & \includegraphics[height=1cm]{77l.jpg}\\
+\hline
+\end{tabular}
+\label{page:77}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{c}
+   \includegraphics[height=3cm]{blue2.jpg}\\
+    blue (2) (AJ, L 3)\\%\hline
+  
+  %\hline
+  \end{tabular}
+\end{table*}
+
+\begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{771r.jpg} & \includegraphics[height=1cm]{771l.jpg}\\
+\hline
+\end{tabular}
+\label{page:771}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{c}
+   \includegraphics[height=3cm]{color.jpg}\\
+    color (N, L 3)\\%\hline
+  
+  %\hline
+  \end{tabular}
+\end{table*}
+
+\begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{773r.jpg} & \includegraphics[height=1cm]{773l.jpg}\\
+\hline
+\end{tabular}
+\label{page:773}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{cc}
+   \includegraphics[height=3cm]{friend.jpg}&  \includegraphics[height=3cm]{closefriend.jpg}\\
+    friend (N, L 5)& close-friend (N, L 5)\\%\hline
+  
+  %\hline
+  \end{tabular}
+\end{table*}
+\newpage
+
+\begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{78r.jpg} & \includegraphics[height=1cm]{78l.jpg}\\
+\hline
+\end{tabular}
+\label{page:78}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{c}
+   \includegraphics[height=3cm]{seven.jpg}\\
+    seven (NUM, L 2)\\%\hline
+  
+  %\hline
+  \end{tabular}
+\end{table*}
+
+\begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{781r.jpg} & \includegraphics[height=1cm]{781l.jpg}\\
+\hline
+\end{tabular}
+\label{page:781}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{cc}
+\multicolumn{1}{l}{\textbf{>}}&\multicolumn{1}{l}{\textbf{{\sansnormal V}}}  \\
+   \includegraphics[height=3cm]{grape.jpg}&   \includegraphics[height=3cm]{roundstick.jpg}\\
+    grape (N, L 4)& stick (round) (N, L 2)\\%\hline
+  
+  %\hline
+  \end{tabular}
+\end{table*}
+
+\begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{782r.jpg} & \includegraphics[height=1cm]{782l.jpg}\\
+\hline
+\end{tabular}
+\label{page:782}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{c}
+   \includegraphics[height=3cm]{shirt.jpg}\\
+    shirt (N, L 3)\\%\hline
+  
+  %\hline
+  \end{tabular}
+\end{table*}
+\newpage
+
+     \begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{79r.jpg} & \includegraphics[height=1cm]{79l.jpg}\\
+\hline
+\end{tabular}
+\label{page:79}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{c}
+   \includegraphics[height=3cm]{eatpineapple.jpg}\\
+    eat-pineapple (V, L 4)\\%\hline
+  
+  %\hline
+  \end{tabular}
+\end{table*}
+
+
+     \begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{791r.jpg} & \includegraphics[height=1cm]{791l.jpg}\\
+\hline
+\end{tabular}
+\label{page:791}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{c}
+   \includegraphics[height=3cm]{eight.jpg}\\
+   eight (NUM, L 2)\\%\hline
+  
+  %\hline
+  \end{tabular}
+\end{table*}
+%%%%%
+
+
+     \begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{792r.jpg} & \includegraphics[height=1cm]{792l.jpg}\\
+\hline
+\end{tabular}
+\label{page:792}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{ccc}
+   \includegraphics[height=3cm]{cute.jpg}&\includegraphics[height=3cm]{sunday.jpg}&\includegraphics[height=3cm]{monday.jpg}\\
+   cute (AJ, L 2)&Sunday (N, L 2)&Monday (N, L 2)\\%\hline
+  
+  %\hline
+  \end{tabular}
+\end{table*}
+\newpage
+\begin{table*}[h!]
+\begin{tabular}{cc}
+\includegraphics[height=3cm]{tuesday.jpg}&\includegraphics[height=3cm]{thursday.jpg}\\
+   Tuesday (N, L 2)&Thursday (N, L 2)\\
+   &\\
+   \includegraphics[height=3cm]{friday.jpg}&\includegraphics[height=3cm]{saturday.jpg}\\
+   Friday (N, L 2)&Saturday (N, L 2)\\
+   &\\
+    \includegraphics[height=3cm]{wednesday.jpg}&\\
+    Wednesday (N, L 2)\\
+   
+   
+  \end{tabular}
+\end{table*}   
+
+%%%%
+     \begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{80r.jpg} & \includegraphics[height=1cm]{80l.jpg}\\
+\hline
+\end{tabular}
+\label{page:80}
+\end{table}
+
+\begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{ccc}
+\multicolumn{1}{l}{{\sansnormal\textbf{T}}$\mathbf\Lambda$}&&\multicolumn{1}{l}{\textbf{{\sansnormal T}>}}  \\
+\includegraphics[height=3cm]{day.jpg}&\includegraphics[height=3cm]{repeat.jpg}&\includegraphics[height=3cm]{love1.jpg}\\
+   day (N, L 2)&do-again, repeat (V, L 1)& love (non-romantically) (V, L 5)\\
+  
+   
+   
+  \end{tabular}
+\end{table*} 
+\newpage
+
+\begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{cc}
+&\multicolumn{1}{l}{\textbf{>}$\pmb\perp$ $(\mathbf\Lambda)$}  \\
+\includegraphics[height=3cm]{loveromantically.jpg}&\includegraphics[height=3cm]{right2.jpg}\\
+   love (romantically) (V, L 5)&right, correct (2) (AJ, L 1)\\
+   \multicolumn{1}{l}{$\mathbf\Lambda$\textbf{<}}&  \\
+   \multicolumn{2}{l}{\includegraphics[height=3cm]{fruit.jpg}}\\
+   \multicolumn{2}{c}{fruit (N, L 4)}\\
+   \multicolumn{1}{l}{\textbf{>}$\pmb\perp$ (\textbf{<})} &\multicolumn{1}{l}{{\sansnormal\textbf{V}}} \\
+   \includegraphics[height=3cm]{thin.jpg}&\includegraphics[height=3cm]{pineapple.jpg}\\
+   thin (person) (AJ, L 5)&pineapple (N, L 4)\\
+   
+   
+  
+   
+   
+  \end{tabular}
+\end{table*}
+
+
+%%%%
+     \begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{81r.jpg} & \includegraphics[height=1cm]{81l.jpg}\\
+\hline
+\end{tabular}
+\label{page:81}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{c}
+   \includegraphics[height=3cm]{yellow.jpg}\\
+   yellow (1) (AJ, L 3)\\%\hline
+  
+  %\hline
+  \end{tabular}
+\end{table*}
+\newpage
+%%%%%%%%%%%
+     \begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{82r.jpg} & \includegraphics[height=1cm]{82l.jpg}\\
+\hline
+\end{tabular}
+\label{page:82}
+\end{table}
+
+\begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{ccc}
+\multicolumn{1}{l}{$\mathbf\Lambda${\sansnormal\textbf{T}}}&\multicolumn{1}{l}{\textbf{>}$\mathbf\Lambda$}&  \\
+\includegraphics[height=3cm]{eatcoconut.jpg}&\multicolumn{2}{l}{\includegraphics[height=3cm]{grapefruit.jpg}}\\
+   eat-coconut (V, L 4)&\multicolumn{2}{c}{grapefruit (N, L 4)}\\
+  & \multicolumn{1}{l}{\textbf{>}$\pmb\perp$}&\multicolumn{1}{l}{\textbf{>}{\sansnormal\textbf{V}}} \\
+  \includegraphics[height=3cm]{coconut.jpg}&\includegraphics[height=3cm]{eatorange.jpg}&\includegraphics[height=3cm]{fat.jpg}\\
+  coconut (N, L 4) & eat-orange (V, L 4)& fat (AJ, L 5)\\
+  
+   
+   
+  \end{tabular}
+\end{table*} 
+
+     \begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{821r.jpg} & \includegraphics[height=1cm]{821l.jpg}\\
+\hline
+\end{tabular}
+\label{page:821}
+\end{table}
+
+ \begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{c}
+   \includegraphics[height=3cm]{nine.jpg}\\
+   nine (NUM, L 2)\\%\hline
+  
+  %\hline
+  \end{tabular}
+\end{table*}
+%%%%%
+\newpage
+
+  \begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{83r.jpg} & \includegraphics[height=1cm]{83l.jpg}\\
+\hline
+\end{tabular}
+\label{page:83}
+\end{table}
+
+\begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{ccc}
+\multicolumn{1}{l}{{\sansnormal\textbf{T}}$\mathbf\Lambda$}&&  \\
+\includegraphics[height=3cm]{namesign.jpg}&\includegraphics[height=3cm]{notyet.jpg}&\includegraphics[height=3cm]{already.jpg}\\
+   name-sgin (N, L 1)&not-yet (NEG, L 5) & already-completed (ASP, L 5)\\
+\multicolumn{1}{l}{{\sansnormal\textbf{T}}\textbf{>}}&\multicolumn{1}{l}{{\sansnormal\textbf{TV}}}&\multicolumn{1}{l}{$\mathbf\Lambda$}  \\
+  \includegraphics[height=3cm]{easygoing.jpg}&\includegraphics[height=3cm]{pants.jpg}&\includegraphics[height=3cm]{how.jpg}\\
+  easy-going (AJ, L 5) & pants (N, L 3)& how (QW, L 4)\\
+  &&\\
+   \includegraphics[height=3cm]{number.jpg}&\includegraphics[height=3cm]{howmany.jpg}&\includegraphics[height=3cm]{what.jpg}\\
+  number (N, L 2) & how-many (QW, L 2)& what (QW, L 1)\\ 
+   &&\multicolumn{1}{l}{$\pmb\perp$}\\
+   \includegraphics[height=3cm]{where.jpg}&\includegraphics[height=3cm]{who.jpg}&\includegraphics[height=3cm]{ten.jpg}\\
+  where (QW, L 1) & who (1) (QW, L 2)& ten (NUM, L 2)\\ 
+   
+   
+  \end{tabular}
+\end{table*} 
+\newpage
+\begin{table*}[h!]\index{sign!two-handed sign}
+\begin{tabular}{c}
+\multicolumn{1}{l}{\sansnormal\textbf{V}}\\
+ \includegraphics[height=3cm]{orange.jpg}\\
+ orange (color) (AJ, L 3)\\
+  \end{tabular}
+\end{table*} 
+
+  \begin{table}[h!]
+\begin{tabular}{|c|c|}
+\hline
+\includegraphics[height=1cm]{84r.jpg} & \includegraphics[height=1cm]{84l.jpg}\\
+\hline
+\end{tabular}
+\label{page:84}
+\end{table}
+
+\begin{table*}[h!]
+\begin{tabular}{c}
+%\multicolumn{1}{l}{\sansnormal\textbf{V}}\\
+ \includegraphics[height=3cm]{orangefruit.jpg}\\
+ orange (fruit) (N, L 4)\\
+  \end{tabular}
+\end{table*} 
+
+
+
+%%%%%%%%%%%%%%%%%
+\label{page:endtwohand}%%%%put at end of two hand
+\end{fullwidth}
+%%%%%%%%%%%%%%%%%%%
+\chapter[English to Hawai`i Sign Language Mini-Dictionary]{English to Hawai`i Sign Language Companion\\ Dictionary to Handbook 1}\index{dictionary!English to HSL Dictionary}
+%\pagestyle{dictstyle}
+\begin{fullwidth}
+\begin{multicols}{2}
+\lettergroup{A}
+\dictchar{A}
+
+\entry[aloha]{aloha}{ (EXC, L 1)\\ \begin{flushright} \includegraphics[height=2.5cm]{hello.png}\end{flushright}}
+\entry[already]{already-completed}{(ASP, L 5)\\ \begin{flushright}\includegraphics[height=2.5cm]{already.jpg}\end{flushright} }
+\entry[ask]{ask}{(V, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{ask.jpg}\end{flushright}}
+
+%\vspace{3cm}
+\lettergroup{B}
+\dictchar{B}
+\entry[banana]{banana}{(N, L 4)\\\begin{flushright}\includegraphics[height=2.5cm]{banana.jpg}\end{flushright}}
+\vspace{1cm}
+\entry[beautiful]{beautiful}{(AJ, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{beautiful.jpg}\end{flushright}}
+\entry[black]{black}{(AJ, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{black.jpg}\end{flushright}}
+\entry[blue (1)]{blue (1)}{(AJ, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{blue.jpg}\end{flushright}}
+\entry[blue (2)]{blue (2)}{(AJ, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{blue2.jpg}\end{flushright}}
+\newpage
+\entry[boy]{boy}{(N, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{boy.jpg}\end{flushright}}
+\entry[brown]{brown}{(AJ, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{brown.jpg}\end{flushright}}
+\thispagestyle{dictstyle}
+\lettergroup{C}
+\dictchar{C}
+\entry[chopsticks]{chopsticks}{(N, L 2)\\\begin{flushright}\includegraphics[height=2.5cm]{chopsticks.jpg}\end{flushright}}
+\entry[close-friend]{close-friend}{(N, L 5)\\\begin{flushright}\includegraphics[height=2.5cm]{closefriend.jpg}\end{flushright}}
+\entry[coconut]{coconut}{(N, L 4)\\\begin{flushright}\includegraphics[height=2.5cm]{coconut.jpg}\end{flushright}}
+\entry[color]{color}{(N, L 3)\\\begin{flushright}\includegraphics[height=2.5cm]{color.jpg}\end{flushright}}
+\vspace{1cm}
+\entry[correct (1)]{correct (1)}{(AJ, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{right1.jpg}\end{flushright}}
+\entry[correct (2)]{correct (2)}{(AJ, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{right2.jpg}\end{flushright}}
+\entry[cute]{cute}{(AJ, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{cute.jpg}\end{flushright}}
+\lettergroup{D}
+\dictchar{D}
+
+\entry[day]{day}{(N, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{day.jpg}\end{flushright}}
+\newpage
+\entry[day-of-the-week]{day-of-the-week}{(N, L 2)\\\begin{flushright}\includegraphics[height=2.5cm]{daysofweek.jpg}\end{flushright}}
+\entry[different]{different}{(AJ, L 4)\\\begin{flushright}\includegraphics[height=2.5cm]{different.jpg}\end{flushright}}
+%\newpage
+\thispagestyle{dictstyle}
+\entry[dislike]{dislike, don't like}{(V, L 3)\\\begin{flushright}\includegraphics[height=2.5cm]{dislike.jpg}\end{flushright}}
+\entry[do-again]{do-again}{(V, L 1)\\\begin{flushright}\includegraphics[height=2.5cm]{repeat.jpg}\end{flushright}}
+\entry[down]{down}{(AV, L 1)\\\begin{flushright}\includegraphics[height=2.5cm]{down.jpg}\end{flushright}}
+%\vspace{2cm}
+\entry[dress]{dress}{(N, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{dress.jpg}\end{flushright}}
+\lettergroup{E}
+\dictchar{E}
+\entry[easy-going]{easy-going}{(AJ, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{easygoing.jpg}\end{flushright}}
+\entry[eat-(unspecified food)]{eat-(unspecified food)}{(V, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{eat.jpg}\end{flushright}}
+%\vspace{1cm}
+\entry[eat-coconut]{eat-coconut}{(V, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{eatcoconut.jpg}\end{flushright}}
+\entry[eat-grape]{eat-grape}{(V, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{eatgrape.jpg}\end{flushright}}
+\entry[eat-mango]{eat-mango}{(V, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{eatmango.jpg}\end{flushright}}
+\newpage
+\thispagestyle{dictstyle}
+\entry[eat-orange]{eat-orange}{(V, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{eatorange.jpg}\end{flushright}}
+\entry[eat-pineapple]{eat-pineapple}{(V, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{eatpineapple.jpg}\end{flushright}}
+\entry[eat-watermelon]{eat-watermelon}{(V, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{eatwatermelon.jpg}\end{flushright}}
+%\newpage
+\thispagestyle{dictstyle}
+\entry[eight]{eight}{(NUM, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{eight.jpg}\end{flushright}}
+\lettergroup{F}
+\dictchar{F}
+\entry[fat]{fat}{(AJ, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{fat.jpg}\end{flushright}}
+
+\vspace{3cm}
+\entry[first]{first}{(NUM, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{first.jpg}\end{flushright}}
+\entry[five]{five}{(NUM, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{five.jpg}\end{flushright}}
+\entry[four]{four}{(NUM, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{four.jpg}\end{flushright}}
+\entry[Friday]{Friday}{(N, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{friday.jpg}\end{flushright}}
+\vspace{1cm}
+\entry[friend]{friend}{(N, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{friend.jpg}\end{flushright}}
+\entry[fruit]{fruit}{(N, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{fruit.jpg}\end{flushright}}
+\vspace{0.5cm}
+\lettergroup{G}
+\dictchar{G}
+\entry[girl]{girl}{(N, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{girl.jpg}\end{flushright}}
+\entry[grape]{grape}{(N, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{grape.jpg}\end{flushright}}
+\entry[grapefruit]{grapefruit}{(N, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{grapefruit.jpg}\end{flushright}}
+\entry[green (1)]{green (1)}{(AJ, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{green.jpg}\end{flushright}}
+%\newpage
+\thispagestyle{dictstyle}
+\vspace{2cm}
+\entry[green (2)]{green (2)}{(AJ, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{green2.jpg}\end{flushright}}
+\lettergroup{H}
+\dictchar{H}
+\entry[hair]{hair}{(N, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{hair.jpg}\end{flushright}}
+\entry[have]{have}{(V, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{have3.jpg}\end{flushright}}
+\entry[he]{he}{(PRO, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{she.jpg}\end{flushright}}
+\entry[he-has]{he-has}{(V, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{hehas.jpg}\end{flushright}}
+\newpage
+\thispagestyle{dictstyle}
+\entry[hello]{hello}{(EXC, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{hello.png}\end{flushright}}
+%\vspace{1cm}
+\entry[her]{her/him (obj)}{(PRO, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{her.jpg}\end{flushright}}
+\entry[hers]{her, his, its (pos), hers, his, its}{(PRO, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{hers.jpg}\end{flushright}}
+\entry[hot-tempered]{hot-tempered}{(AJ, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{hottempered.jpg}\end{flushright}}
+\entry[how]{how}{(QW, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{how.jpg}\end{flushright}}
+\vspace{3cm}
+\entry[how-many]{how-many}{(QW, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{howmany.jpg}\end{flushright}}
+\lettergroup{I}
+\dictchar{I}
+\entry[I]{I}{(PRO, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{me.jpg}\end{flushright}}
+%\newpage
+\thispagestyle{dictstyle}
+\entry[I-have]{I-have}{(V, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{ihave.jpg}\end{flushright}}
+\entry[it]{it}{(PRO, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{she.jpg}\end{flushright}}
+\lettergroup{L}
+\dictchar{L}
+\entry[like]{like}{(V, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{like.jpg}\end{flushright}}
+\entry[longan]{longan}{(N, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{longan.jpg}\end{flushright}}
+\thispagestyle{dictstyle}
+\entry[love]{love (non-romantically)}{(V, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{love1.jpg}\end{flushright}}
+\entry[love]{love (romantically)}{(V, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{loveromantically.jpg}\end{flushright}}
+\vspace{1cm}
+\lettergroup{M}
+\dictchar{M}
+\entry[mahu]{mahu}{(N, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{mahu.jpg}\end{flushright}}
+\entry[man]{man}{(N, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{boy.jpg}\end{flushright}}
+\vspace{2cm}
+\entry[mango]{mango}{(N, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{mango.jpg}\end{flushright}}
+\entry[me]{me}{(PRO, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{me.jpg}\end{flushright}}
+\entry[meet]{meet}{(V, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{meet.jpg}\end{flushright}}
+\entry[mine]{mine, my}{(PRO, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{my.jpg}\end{flushright}}
+\newpage
+\thispagestyle{dictstyle}
+\entry[Monday]{Monday}{(N, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{monday.jpg}\end{flushright}}
+\vspace{0.5cm}
+\lettergroup{N}
+\dictchar{N}
+\entry[name]{name}{(N, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{name.jpg}\end{flushright}}
+\entry[name-sign]{name-sign}{(N, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{namesign.jpg}\end{flushright}}
+\entry[nine]{nine}{(NUM, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{nine.jpg}\end{flushright}}
+\entry[not-yet]{not-yet}{(NEG, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{notyet.jpg}\end{flushright}}
+\vspace{2cm}
+\entry[number]{number}{(N, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{number.jpg}\end{flushright}}
+\vspace{0.5cm}
+\lettergroup{O}
+\dictchar{O}
+\entry[old]{old (person)}{(AJ, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{old.jpg}\end{flushright}}
+\entry[one]{one}{(NUM, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{one.jpg}\end{flushright}}
+\entry[orange]{orange (color)}{(AJ, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{orange.jpg}\end{flushright}}
+\entry[orange]{orange (fruit)}{(N, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{orangefruit.jpg}\end{flushright}}
+\newpage
+\lettergroup{P}
+\dictchar{P}
+\thispagestyle{dictstyle}
+\entry[pants]{pants}{(N, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{pants.jpg}\end{flushright}}
+\entry[pink]{pink}{(AJ, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{pink.jpg}\end{flushright}}
+%\newpage
+\thispagestyle{dictstyle}
+\entry[pineapple]{pineapple}{(N, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{pineapple.jpg}\end{flushright}}
+\lettergroup{R}
+\dictchar{R}
+\entry[red]{red}{(AJ, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{red.jpg}\end{flushright}}
+\entry[repeat]{repeat}{(V, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{repeat.jpg}\end{flushright}}
+\vspace{2cm}
+\entry[right]{right (correct) (1)}{(AJ, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{right1.jpg}\end{flushright}}
+\entry[right]{right (correct) (2)}{(AJ, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{right2.jpg}\end{flushright}}
+\lettergroup{S}
+\dictchar{S}
+\entry[same]{same (1)}{(AJ, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{same1.jpg}\end{flushright}}
+\vspace{0.5cm}
+\entry[same]{same (2)}{(AJ, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{same2.jpg}\end{flushright}}
+\entry[Saturday]{Saturday}{(N, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{Saturday.jpg}\end{flushright}}
+\newpage
+\thispagestyle{dictstyle}
+\entry[second]{second}{(NUM, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{second.jpg}\end{flushright}}
+\entry[seven]{seven}{(NUM, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{seven.jpg}\end{flushright}}
+\entry[she]{she}{(PRO, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{she.jpg}\end{flushright}}
+\entry[she-has]{she-has}{(V, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{hehas.jpg}\end{flushright}}
+%\newpage
+\thispagestyle{dictstyle}
+\entry[shirt]{shirt}{(N, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{shirt.jpg}\end{flushright}}
+\vspace{3cm}
+\entry[short]{short (person)}{(AJ, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{short.jpg}\end{flushright}}
+\entry[six]{six}{(NUM, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{six.jpg}\end{flushright}}
+\entry[silver]{silver (color) (1)}{(AJ, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{silver.jpg}\end{flushright}}
+\entry[silver]{silver (color) (2)}{(AJ, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{silver2.jpg}\end{flushright}}
+\entry[stick (flat)]{stick (flat)}{(N, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{flatstick.jpg}\end{flushright}}
+\newpage
+\thispagestyle{dictstyle}
+\entry[stick (round)]{stick (round)}{(N, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{roundstick.jpg}\end{flushright}}
+\entry[strong]{strong}{(AJ, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{strong.jpg}\end{flushright}}
+\entry[Sunday]{Sunday}{(N, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{sunday.jpg}\end{flushright}}
+\lettergroup{T}
+\dictchar{T}
+\entry[tall]{tall (person)}{(AJ, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{tall.jpg}\end{flushright}}
+\entry[ten]{ten}{(NUM, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{ten.jpg}\end{flushright}}
+\vspace{3cm}
+\entry[thin]{thin (person)}{(AJ, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{thin.jpg}\end{flushright}}
+%\newpage
+\thispagestyle{dictstyle}
+\entry[third]{third}{(NUM, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{third.jpg}\end{flushright}}
+\entry[three]{three}{(NUM, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{three.jpg}\end{flushright}}
+\entry[Thursday]{Thursday}{(N, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{thursday.jpg}\end{flushright}}
+\entry[to-the-left]{to-the-left}{(AV, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{left.jpg}\end{flushright}}
+\newpage
+\thispagestyle{dictstyle}
+\entry[to-the-right]{to-the-right}{(AV, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{right.jpg}\end{flushright}}
+
+\entry[today]{today}{(N, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{today.jpg}\end{flushright}}
+\vspace{1.5cm}
+\entry[tomorrow]{tomorrow}{(N, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{tomorrow.jpg}\end{flushright}}
+\entry[Tuesday]{Tuesday}{(N, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{tuesday.jpg}\end{flushright}}
+\entry[two]{two}{(NUM, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{two.jpg}\end{flushright}}
+\vspace{2cm}
+\entry[two-of-us]{two-of-us}{(PRO, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{twoofus.jpg}\end{flushright}}
+\entry[two-of-them]{two-of-them}{(PRO, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{twoofthem.jpg}\end{flushright}}
+\entry[two-of-you]{two-of-you}{(PRO, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{twoofyou.pdf}\end{flushright}}
+%\newpage
+\thispagestyle{dictstyle}
+\lettergroup{U}
+\dictchar{U}
+\entry[ugly]{ugly (person)}{(AJ, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{ugly.jpg}\end{flushright}}
+\entry[up]{up}{(AV, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{up.jpg}\end{flushright}}
+\newpage
+\thispagestyle{dictstyle}
+\lettergroup{W}
+\dictchar{W}
+\entry[watermelon]{watermelon}{(N, L 4)\\\begin{flushright}\includegraphics[height=2.75cm]{watermelon.jpg}\end{flushright}}
+\entry[we two]{we two}{(PRO, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{twoofus.jpg}\end{flushright}}
+\entry[weak]{weak}{(AJ, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{weak.jpg}\end{flushright}}
+\entry[Wednesday]{Wednesday}{(N, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{wednesday.jpg}\end{flushright}}
+\vspace{0.5cm}
+\entry[what]{what}{(QW, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{what.jpg}\end{flushright}}
+\vspace{2cm}
+\entry[where]{where}{(QW, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{where.jpg}\end{flushright}}
+\entry[where]{where (distal)}{(QW, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{wheredistal.jpg}\end{flushright}}
+\entry[white]{white}{(AJ, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{white.jpg}\end{flushright}}
+\entry[who]{who}{(QW, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{who.jpg}\end{flushright}}
+\entry[woman]{woman}{(N, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{girl.jpg}\end{flushright}}
+\newpage
+\thispagestyle{dictstyle}
+\lettergroup{Y}
+\dictchar{Y}
+\entry[yellow]{yellow (1)}{(AJ, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{yellow.jpg}\end{flushright}}
+\entry[yellow]{yellow (2)}{(AJ, L 3)\\\begin{flushright}\includegraphics[height=2.75cm]{yellow2.jpg}\end{flushright}}
+\entry[yesterday]{yesterday}{(N, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{yesterday.jpg}\end{flushright}}
+\entry[you]{you (singular)}{(PRO, L 1)\\\begin{flushright}\includegraphics[height=2.75cm]{you.jpg}\end{flushright}}
+\entry[you-have]{you-have}{(V, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{youhave.jpg}\end{flushright}}
+\vspace{3cm}
+\entry[you-two]{you-two}{(PRO, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{twoofyou.pdf}\end{flushright}}
+%\vspace{1.5cm}
+\entry[young]{young (person)}{(AJ, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{young.jpg}\end{flushright}}
+\entry[your]{your, yours}{(PRO, L 5)\\\begin{flushright}\includegraphics[height=2.75cm]{your.jpg}\end{flushright}}
+\lettergroup{Z}
+\dictchar{Z}
+\entry[zero]{zero}{(NUM, L 2)\\\begin{flushright}\includegraphics[height=2.75cm]{zero.jpg}\end{flushright}}
+
+\clearpage
+\end{multicols}
+
+\end{fullwidth}
+
+\thispagestyle{empty}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{fullwidth}
+\clearpage
+  \addcontentsline{toc}{chapter}{Index}
+\printindex
+\end{fullwidth}
+\end{document}
+
